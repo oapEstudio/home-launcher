@@ -1,0 +1,110 @@
+
+:root{
+  --menu-bg: #FAFAFA;
+  --menu-fg: #0D0D0D;
+  --menu-border: #E6E6E6;
+  --menu-divider: #EDEDED;
+  --menu-accent: #B3B3B3;
+  --panel-w: 350px;            /* desktop (del SVG) */
+  --panel-w-mobile: 343px;     /* mobile (del SVG) */
+  --row-h: 48px;
+  --gap-overlap: -1px;         /* pega paneles */
+  --radius: 8px;
+  --shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+/* contenedor raíz del menú */
+.launcherMenu {
+  position: relative;
+  width: var(--panel-w);
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: visible; /* ¡importante para que no recorte flyouts! */
+}
+.launcherMenu.isHidden { display: none; }
+
+/* wrapper de paneles */
+.menu-panels { position: relative; width: 100%; min-height: var(--row-h); }
+
+/* panel con lista vertical */
+.menu-panel { position: relative; width: 100%; background: var(--menu-bg); border-radius: var(--radius); overflow: hidden; }
+.menu-list  { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+
+/* fila */
+.menu-item{
+  position: relative;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 8px 12px 16px;
+  min-height: var(--row-h);
+  border-bottom: 1px solid var(--menu-divider);
+  cursor: pointer; user-select: none;
+}
+.menu-item:last-child{ border-bottom: 0; }
+.menu-item .label{ font-size: 14px; line-height: 19px; font-weight: 600; color: var(--menu-fg); }
+
+/* ícono chevron a la derecha */
+.chevron{ width: 24px; height: 24px; flex: 0 0 24px; display: inline-flex; align-items: center; justify-content: center; margin-left: 8px; }
+.chevron svg{ display:block; }
+
+.menu-item:hover{ background: #f2f2f2; }
+.menu-item:active{ background: #ebebeb; }
+
+/* -------------- Desktop (flyout por click) -------------- */
+@media (min-width: 769px){
+  .launcherMenu { width: var(--panel-w); }
+
+  .flyout-host{ position: relative; overflow: visible; } /* no recortar hijos */
+
+  .submenu-panel{
+    position: absolute;
+    top: 0;
+    left: calc(100% + var(--gap-overlap));
+    width: var(--panel-w);
+    background: var(--menu-bg);
+    border: 1px solid var(--menu-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: visible;  /* no recorta sus propios hijos */
+    display: none;
+    z-index: 1200;
+  }
+  .submenu-panel.show{ display: block; }
+  .submenu-panel[data-top]{ top: var(--top, 0px); }
+
+  .submenu-panel > .menu-panel{ overflow: hidden; } /* el contenido interno sí recorta */
+
+  /* la fila back no existe en desktop */
+  .back-row{ display: none; }
+}
+
+/* -------------- Mobile (stack) -------------- */
+@media (max-width: 768px){
+  .launcherMenu { width: var(--panel-w-mobile); }
+  .menu-panels { overflow: hidden; }
+
+  .stack-strip{ display: flex; width: 100%; transition: transform 220ms ease; }
+  .menu-panel { flex: 0 0 100%; width: 100%; border: 1px solid var(--menu-border); border-radius: var(--radius); }
+
+  /* fila “Volver” arriba del sub */
+  .back-row{
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 8px 12px 12px; min-height: var(--row-h);
+    border-bottom: 1px solid var(--menu-divider);
+    background: #fff; cursor: pointer;
+  }
+  .back-row .label{ font-weight: 700; }
+  .back-row .chevron svg{ transform: rotate(180deg); }
+}
+
+/* foco accesible */
+.menu-item:focus, .back-row:focus { outline: 2px solid #1976d2; outline-offset: -2px; }
+
+/* Anclar el menú como dropdown del botón (dentro del contenedor relativo) */
+.launcherMenuDropdown {
+  position: absolute;
+  top: calc(100% + 8px); /* 8px de separación bajo el botón */
+  left: 0;
+  z-index: 1400;         /* por encima del navbar */
+}

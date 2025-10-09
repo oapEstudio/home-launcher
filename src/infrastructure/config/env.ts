@@ -1,0 +1,25 @@
+export const env = {
+  baseURL: import.meta.env.VITE_BASE_URL + "api/" || "http://localhost:3000",
+  pageSize: import.meta.env.VITE_PAGE_SIZE_DEFAULT || 10,
+  authMode: (import.meta.env.VITE_AUTH_MODE as 'enabled' | 'mock' | 'disabled') ?? 'enabled',
+  resources: {   
+    highlight: {
+        getAll: {
+         endpoint: 'highlighted',   
+         version: 'v1'
+        }
+    },
+    menuHome: {
+      getAll: {
+         endpoint: 'menu',   
+         version: 'v1'
+      }
+    },
+    notificationCarousel: {
+      getAll: {
+         endpoint: 'notificationCarrusel',   
+         version: 'v1'
+      }
+    }
+  }
+};
