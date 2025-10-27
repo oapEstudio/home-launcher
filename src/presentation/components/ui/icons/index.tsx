@@ -39,6 +39,12 @@ import ChevronRightOutlinedIcon from '@mui/icons-material/ChevronRightOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import { colors } from "../../../common/colors";
 import SyncIcon from '@mui/icons-material/Sync';
+import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
+import DownloadIcon from '@mui/icons-material/Download';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import LinkIcon from '@mui/icons-material/Link';
+import SvgIcon from '@mui/material/SvgIcon';
+import type { ElementType } from "react";
 
 export interface IIconAction{
   handleClick?: any,
@@ -109,8 +115,8 @@ export const DangerIcon = () => {
   return <CancelIcon sx={{ color: baselightTheme.palette.error.dark }} />;
 };
 
-export const WarningIcon = ({ color }: any) => {
-  return <WarningOutlined  sx={{ color: color.toString(), fontSize: 40 }} />;
+export const WarningIcon = ({ color, fontSize = 40 }: {color: string; fontSize?: number}) => {
+  return <WarningOutlined  sx={{ color: color.toString(), fontSize: fontSize }} />;
 };
 
 export const ActiveColumnIcon: React.FC<IActiveColumnIconProps> = ({
@@ -120,7 +126,6 @@ export const ActiveColumnIcon: React.FC<IActiveColumnIconProps> = ({
 };
 
 export const EditActionIcon: React.FC<IIconAction> = ({handleClick, parameterHandleClick}) => {
-  //return <EditIcon sx={{ color: baselightTheme.palette.info.dark }} />;
   return <BorderColorOutlined onClick={()=>{
       if(handleClick) parameterHandleClick? handleClick(parameterHandleClick) : handleClick();
   }} />
@@ -209,3 +214,36 @@ export const HelpIcon = ()=>{
 export const SyncIconn = () => {
   return <SyncIcon />
 }
+export const InfoIcon = () =>{
+  return <InfoOutlineIcon />
+}
+
+export const DownloaddIcon = () =>{
+  return <DownloadIcon />
+}
+
+export const WarningTriangleIcon = () =>{
+  return <WarningAmberIcon />
+}
+
+export const LinksIcon = ()=>{
+  return <LinkIcon />
+}
+
+
+
+type SVGIconProps = {
+  icon: ElementType;           // componente React (no URL)
+  color?: string;
+  fontSize?: 'inherit'|'small'|'medium'|'large';
+};
+
+
+export const SVGIcon = ({ icon, color = colors.palette.primary.main, fontSize = 'medium' }: SVGIconProps) => (
+  <SvgIcon
+    component={icon}
+    inheritViewBox
+    fontSize={fontSize}
+    sx={color ? { color } : undefined}
+  />
+);

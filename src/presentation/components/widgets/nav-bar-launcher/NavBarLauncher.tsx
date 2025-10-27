@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { RedStripe } from './components/RedStripe';
 import { CustomBox } from '../../ui/box/CustomBox';
 import { CustomStack } from '../../ui/stack/Stack';
-import { HelpIcon } from '../../ui/icons';
+import { HelpIcon, WarningIcon } from '../../ui/icons';
 import LogoYPF from '../../ui/icons/ypf-logo/ypf-logo';
 import Typography from '@mui/material/Typography';
 import { Button } from '../../ui/button';
-import { NotificationBell } from './components/NotificationBell';
+import { NotificationBell, type NotificationGroups } from './components/NotificationBell';
 import './NavBarLauncher.css';
 import { LauncherMenu } from '../menu-home/LauncherMenu';;
 import { LauncherHamburgerButton } from '../menu-home/LauncherMenuHamburguesaButton';;
 import type { NavItem } from '../menu-home/types';;
-import { DividerCell } from './components/DividerCell';;
+import { DividerCell } from './components/DividerCell';import { selectedIconsNotificationCommon } from '../../../utils/selected-icon-notification-common';
+import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNotificationCommon';
+import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
+;
 
 interface INavBarLauncherProps{
   userName: string;
@@ -20,12 +23,18 @@ interface INavBarLauncherProps{
 }
 
 
-
 export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu }) => {
   
   const [open, setOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
+  const {result: resultNotifications, loading: loadingNotifications} = useGetNotificationCommon({
+         page: 1, pageSize: 10,sortBy: '', sortDescending: true
+       });
 
+  const notifications = useMemo(
+                  () => (resultNotifications?.data ? mapCommonToGroups(resultNotifications.data): null),
+                  [resultNotifications?.data]
+                )
   return (
     <>      
       <CustomBox
@@ -98,7 +107,13 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
             </CustomStack>
 
             <DividerCell>
-              <NotificationBell />
+              <NotificationBell 
+                    loading={loadingNotifications} 
+                    groups={notifications as NotificationGroups} 
+                    iconResolver={(typeId) => {                  
+                      return selectedIconsNotificationCommon(typeId.toString());
+                    }} 
+                />
             </DividerCell>
 
             <div className='buttonHelp'>

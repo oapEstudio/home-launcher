@@ -20,6 +20,22 @@ export const env = {
          endpoint: 'notificationCarrusel',   
          version: 'v1'
       }
+    },
+    notificationAlert: {
+      getAll: {
+         endpoint: 'notificationAlert',   
+         version: 'v1'
+      }
+    },
+    notificationCommon: {
+      getAll: {
+         endpoint: 'notificationCommon',   
+         version: 'v1'
+      },
+      update: {
+        endpoint: 'notificationCommon/read',   
+        version: 'v1'
+      }
     }
   }
 };

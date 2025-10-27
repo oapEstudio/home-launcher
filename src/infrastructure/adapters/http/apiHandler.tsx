@@ -51,7 +51,7 @@ const getConfig = (config: IHttpRequestConfig = {}) => {
     params: queryParams,
     headers: {
       ...headers,
-      Authorization: `Bearer ${token}`,     
+     // Authorization: `Bearer ${token}`,     
     },
     ...(baseURL && { baseURL }),
     ...rest,
