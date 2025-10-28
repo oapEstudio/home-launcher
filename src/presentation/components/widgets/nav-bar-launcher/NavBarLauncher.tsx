@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { RedStripe } from './components/RedStripe';
 import { CustomBox } from '../../ui/box/CustomBox';
 import { CustomStack } from '../../ui/stack/Stack';
-import { ExitIcon, HelpIcon, WarningIcon } from '../../ui/icons';
+import { ExitIcon, HelpIcon } from '../../ui/icons';
 import LogoYPF from '../../ui/icons/ypf-logo/ypf-logo';
 import Typography from '@mui/material/Typography';
 import { Button } from '../../ui/button';
@@ -16,17 +15,19 @@ import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNot
 import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
 import IconButton from '@mui/material/IconButton';
 import ButtonGroup from '@mui/material/ButtonGroup';
-;
+
 
 interface INavBarLauncherProps{
   userName: string;
   menues: NavItem[];
   syncMenu: boolean;
+  logout: ()=>void;
 }
 
 
-export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu }) => {
+export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu, logout }) => {
   
+
   const [open, setOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
   const {result: resultNotifications, loading: loadingNotifications} = useGetNotificationCommon({
@@ -36,10 +37,11 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
   const notifications = useMemo(
                   () => (resultNotifications?.data ? mapCommonToGroups(resultNotifications.data): null),
                   [resultNotifications?.data]
-                )
+                );
+ 
+
   return (
-    <>      
-      <CustomBox
+    <CustomBox
         component="header"
         sx={{
           px: { xs: '4%', md: '8.5%' },
@@ -101,10 +103,10 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
               }}
             >
               <Typography variant="body1" sx={{ color: 'primary.main' }}>
-                Hola, <span style={{ textTransform: 'uppercase' }}>{userName}</span>
+                                Hola, <span style={{ textTransform: 'uppercase' }}>{userName || 'Usuario'}</span>
               </Typography>
               <div className="containerCloseSesion">
-                <Button variant="secondary" title="Cerrar sesión" />
+                                <Button variant="secondary" title="Cerrar sesión" onClick={logout} />
               </div>
             </CustomStack>
 
@@ -126,7 +128,7 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
                   icon={<HelpIcon />}
                 />
             </div>
-             <ButtonGroup variant="contained" className='buttonCloseResponsive'>
+             <ButtonGroup variant="contained" className='buttonCloseResponsive' onClick={logout}>
                 <IconButton color='error'>
                   <ExitIcon />
                 </IconButton>
@@ -135,6 +137,5 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
           </CustomStack>
         </CustomStack>
       </CustomBox>
-    </>
   );
 };
