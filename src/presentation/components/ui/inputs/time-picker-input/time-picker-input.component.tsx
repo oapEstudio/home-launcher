@@ -1,4 +1,4 @@
-import { Dayjs } from "dayjs";
+import type { Dayjs } from "dayjs";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { InputLabel } from "@mui/material";
 import { styles } from "../styles";

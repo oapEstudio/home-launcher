@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { RedStripe } from './components/RedStripe';
 import { CustomBox } from '../../ui/box/CustomBox';
 import { CustomStack } from '../../ui/stack/Stack';
-import { HelpIcon, WarningIcon } from '../../ui/icons';
+import { ExitIcon, HelpIcon, WarningIcon } from '../../ui/icons';
 import LogoYPF from '../../ui/icons/ypf-logo/ypf-logo';
 import Typography from '@mui/material/Typography';
 import { Button } from '../../ui/button';
@@ -14,6 +14,8 @@ import type { NavItem } from '../menu-home/types';;
 import { DividerCell } from './components/DividerCell';import { selectedIconsNotificationCommon } from '../../../utils/selected-icon-notification-common';
 import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNotificationCommon';
 import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
+import IconButton from '@mui/material/IconButton';
+import ButtonGroup from '@mui/material/ButtonGroup';
 ;
 
 interface INavBarLauncherProps{
@@ -88,7 +90,7 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
          
           <CustomStack
             direction="row"
-            sx={{ alignItems: 'center', gap: 2, overflow: 'visible' }}
+            sx={{ alignItems: 'center', gap: { xs: 0.7, md: 2 }, overflow: 'visible' }}
           >
             <CustomStack
               sx={{
@@ -124,6 +126,12 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
                   icon={<HelpIcon />}
                 />
             </div>
+             <ButtonGroup variant="contained" className='buttonCloseResponsive'>
+                <IconButton color='error'>
+                  <ExitIcon />
+                </IconButton>
+             </ButtonGroup>
+
           </CustomStack>
         </CustomStack>
       </CustomBox>
