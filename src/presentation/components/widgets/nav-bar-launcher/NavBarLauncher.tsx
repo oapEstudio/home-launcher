@@ -119,7 +119,7 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
             <div className='buttonHelp'>
                <Button             
                   variant="secondaryTwo"
-                  title="Contáctanos"
+                  title="Ayuda"
                   style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
                   icon={<HelpIcon />}
                 />

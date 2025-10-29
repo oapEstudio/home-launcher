@@ -12,6 +12,8 @@ import { GetNotificationAlertUseCase } from '../../application/usecases/GetNotif
 import { GetNotificationCommonUseCase } from '../../application/usecases/GetNotificationCommonUseCase';
 import { NotificationCommonRepository } from '../../infrastructure/adapters/http/NotificationCommonRepository';
 import { UpdateNotificationCommonUseCase } from '../../application/usecases/UpdateNotificationCommonUseCase';
+import { GetHelpUseCase } from '../../application/usecases/GetHelpUseCase';
+import { HelpRepository } from '../../infrastructure/adapters/http/HelpRepository';
 
 
 const menuHomeRepo = new MenuHomeRepository();
@@ -19,6 +21,7 @@ const highlightRepo = new HighlightRepository();
 const notificationCarousel = new NotificationCarouselRepository();
 const notificationAlertRepo = new NotificationAlertRepository();
 const notificationCommonRepo = new NotificationCommonRepository();
+const helpRepo = new HelpRepository();
 
 
 //const filterRepo = new DatasetFilterRepository();
@@ -32,6 +35,7 @@ export interface IDependencies{
   getNotificationAlert: GetNotificationAlertUseCase;
   getNotificationCommon: GetNotificationCommonUseCase;
   updateNotificationCommon: UpdateNotificationCommonUseCase;
+  getHelp: GetHelpUseCase;
 }
 
 
@@ -42,7 +46,8 @@ export const defaultDependencies: IDependencies = {
   getNotificationCarousel: new GetNotificationCarouselUseCase(notificationCarousel),
   getNotificationAlert: new GetNotificationAlertUseCase(notificationAlertRepo),
   getNotificationCommon: new GetNotificationCommonUseCase(notificationCommonRepo),
-  updateNotificationCommon: new UpdateNotificationCommonUseCase(notificationCommonRepo)
+  updateNotificationCommon: new UpdateNotificationCommonUseCase(notificationCommonRepo),
+  getHelp: new GetHelpUseCase(helpRepo),
 };
 
 export const DependencyContext = React.createContext<IDependencies>(defaultDependencies);

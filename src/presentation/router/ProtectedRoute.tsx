@@ -1,7 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 
-import { HOME } from './routes';
+import { HELP, HOME } from './routes';
 import { HomePage } from '../features/home/HomePage';
+import { HelpPage } from '../features/help/HelpPage';
 
 export const ProtectedRoute = () => (
   <Routes>   
@@ -9,6 +10,13 @@ export const ProtectedRoute = () => (
       path={HOME.name}
       element={        
           <HomePage />       
+      }
+    />
+
+    <Route
+      path={HELP.name}
+      element={        
+          <HelpPage />       
       }
     />
   </Routes>
