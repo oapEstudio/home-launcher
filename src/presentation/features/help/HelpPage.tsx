@@ -1,109 +1,109 @@
 import { CustomBox } from "../../components/ui/box/CustomBox";
-import Container from "../../components/ui/container";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { useResponsive } from "./hooks/useResponsive";
 import { MobileSectionView } from "./components/views/MobileSectionView";
 import { MobileMenuView } from "./components/views/MobileMenuView";
 import { DesktopLayout } from "./components/views/DesktopLayout";
 import { Breadcrumbs } from "./components/common/Breadcrumbs";
-
-
-const helpSections = [
-  {
-    id: 'gestion-casos',
-    title: 'Gestión de casos',
-    description: 'Et nec nunc ornare nisi ac adipiscing sit magnis in. Pretium euismod quis eget quisque a aliquet justo proin. Adipiscing fusce massa volutpat leo leo turpis eu eget vel.',
-    articles: [
-      { id: 1, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'download' },
-      { id: 2, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'explore' },
-      { id: 3, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'download' },
-      { id: 4, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'explore' },
-      { id: 5, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'view' }
-    ]
-  },
-  {
-    id: 'tema-2',
-    title: 'Tema 2',
-    description: 'Et nec nunc ornare nisi ac adipiscing sit magnis in. Pretium euismod quis eget quisque a aliquet justo proin. Adipiscing fusce massa volutpat leo leo turpis eu eget vel.',
-    articles: [
-      { id: 6, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'view' },
-      { id: 7, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'explore' },
-      { id: 8, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'download' },
-      { id: 9, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'explore' },
-      { id: 10, title: 'Lorem ipsum dolor sit amet consectetur.', action: 'view' }
-    ]
-  },
-  { id: 'aprendizaje-comercial', title: 'Aprendizaje Comercial', articles: [] },
-  { id: 'resumen-movimientos', title: 'Resumen de movimientos', articles: [] },
-  { id: 'sellos-red-xxi', title: 'Sellos RED XXI', articles: [] },
-  { id: 'azul32', title: 'Azul32', articles: [] },
-  { id: 'mass', title: 'MASS', articles: [] },
-  { id: 'tiendas', title: 'Tiendas', articles: [] },
-  { id: 'ypf-ruta', title: 'YPF Ruta de estaciones', articles: [] },
-  { id: 'lota-liquido', title: 'Lota Líquido de Producto', articles: [] },
-  { id: 'proyecto-justo', title: 'Proyecto Justo Para Vos', articles: [] },
-  { id: 'moes', title: 'MOES', articles: [] }
-];
+import { Container, Divider, Typography } from "@mui/material";
+import { colors } from "../../common/colors";
+import { useGetHelp } from "./hooks/useGetHelp";
+import Loading from "../../components/ui/loading";
 
 export const HelpPage = () => {
   const { isMobile } = useResponsive();
-  const [currentView, setCurrentView] = useState('menu');
-  const [selectedSection, setSelectedSection] = useState('');
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [currentView, setCurrentView] = useState("menu");
+  const [selectedSection, setSelectedSection] = useState<string>("");
 
   const handleSectionClick = (sectionId: string) => {
     setSelectedSection(sectionId);
     if (isMobile) {
-      setCurrentView('section');
+      setCurrentView("section");
     }
   };
 
   const handleBackToMenu = () => {
-    setCurrentView('menu');
-    setSelectedSection('');
+    setCurrentView("menu");
+    setSelectedSection("");
   };
 
+  const INTIAL_PARAMS = { page: 1, pageSize: 1000, sortBy: "", sortDescending: true };
+  const { result, loading, error } = useGetHelp(INTIAL_PARAMS);
+
+  useEffect(() => {
+    setCurrentView("menu");
+    setSelectedSection("");   // <-- evita breadcrumb “sucio” al pasar de mobile<->desktop
+  }, [isMobile]);
+
+  // 2) En desktop, cuando hay datos y no hay selección, elegir el primero
+  useEffect(() => {
+    if (!isMobile && result?.data?.length && !selectedSection) {
+      setSelectedSection(result.data[0].id);
+    }
+  }, [isMobile, result, selectedSection]);
 
   const section = selectedSection
-    ? helpSections.find(s => s.id === selectedSection)
+    ? result?.data.find((s) => s.id === selectedSection)
     : null;
 
   return (
-    <>
-      <Container description={'MESA DE AYUDA'} title='AYUDA'>
-        <CustomBox sx={{ maxWidth: '1400px', margin: 'auto' }}>
-          <CustomBox sx={{ py: 3 }}>
-            <Breadcrumbs section={section} isMobile={isMobile} onBackToMenu={handleBackToMenu} />
-            <CustomBox sx={{ flexGrow: 1, overflow: 'hidden' }}>
-              {isMobile ? (
-                <>
-                  {currentView === 'menu' ? (
-                    <CustomBox sx={{ height: '100%', overflow: 'auto' }}>
-                      <MobileMenuView onSectionClick={handleSectionClick} />
-                    </CustomBox>
-                  ) : (
-                    <CustomBox sx={{ height: '100%', overflow: 'auto' }}>
-                      <MobileSectionView
-                        section={section}
-                        onBackToMenu={handleBackToMenu}
-                      />
-                    </CustomBox>
-                  )}
-                </>
-              ) : (
-                <DesktopLayout
-                  currentSection={selectedSection}
-                  onSectionClick={handleSectionClick}
-                />
-              )}
-            </CustomBox>
-          </CustomBox>
+    <CustomBox maxWidth="1400px" sx={{ margin: "auto" }}>
+      <CustomBox sx={{ p: 3 }}>
+        <Breadcrumbs
+          section={section}
+          isMobile={isMobile}
+          onBackToMenu={handleBackToMenu}
+        />
+        <CustomBox sx={{ textAlign: "center", py: 4 }}>
+
+          <Typography variant="h3" sx={{ fontWeight: "bold" }}>
+            Mesa de ayuda
+          </Typography>
+          <Divider
+            sx={{
+              width: 100,
+              borderBottomWidth: 1,
+              mx: "auto",
+              mt: 2,
+              borderColor: colors.palette.primary.main,
+            }}
+          />
         </CustomBox>
-      </Container >
 
-    </>
-
+        {loading ? (
+          <center>
+            <Loading />
+          </center>
+        ) : (
+          <CustomBox sx={{ flexGrow: 1, overflow: "hidden" }}>
+            {isMobile ? (
+              <>
+                {currentView === "menu" ? (
+                  <CustomBox sx={{ height: "100%", overflow: "auto" }}>
+                    <MobileMenuView
+                      onSectionClick={handleSectionClick}
+                      helpSections={result?.data || []}
+                    />
+                  </CustomBox>
+                ) : (
+                  <CustomBox sx={{ height: "100%", overflow: "auto" }}>
+                    <MobileSectionView
+                      section={section}
+                      onBackToMenu={handleBackToMenu}
+                    />
+                  </CustomBox>
+                )}
+              </>
+            ) : (
+              <DesktopLayout
+                helpSections={result?.data || []}
+                currentSection={selectedSection}
+                onSectionClick={handleSectionClick}
+              />
+            )}
+          </CustomBox>
+        )}
+      </CustomBox>
+    </CustomBox>
   );
 };
-
-

@@ -1,10 +1,10 @@
 import { Paper, Typography } from "@mui/material";
 import { CustomBox } from "../../../../components/ui/box/CustomBox";
 import { ArticleAction } from "../common/ArticleAction";
-import Divider from "../../../../components/ui/divider";
+import type { IHelp } from "../../../../../domain/entities/IHelp";
 
 interface SectionContentProps {
-  section: any | null | undefined; //TODO HelpSection
+  section: IHelp | null | undefined;
 }
 
 export const SectionContent: React.FC<SectionContentProps> = ({ section }) => {
@@ -20,54 +20,44 @@ export const SectionContent: React.FC<SectionContentProps> = ({ section }) => {
 
   const handleAction = (articleId: number, action: string): void => {
     console.log(`Acción: ${action} en artículo ${articleId}`);
-    // Aquí implementarías la lógica real de cada acción
+    //TODO Aquí IMPLEMENTAR la lógica real de cada acción
   };
 
   return (
     <CustomBox>
-      <CustomBox sx={{ mb: 4 }}>
-        <Typography variant="h6" color="primary" gutterBottom>
-          {section.title}
-        </Typography>
-        
-        {section.description && (
-          <Typography variant="body1" color="text.secondary">
-            {section.description}
-          </Typography>
-        )}
-      </CustomBox>
-
-      {section.articles && section.articles.length > 0 ? (
+      {section.children && section.children.length > 0 ? (
         <CustomBox sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {section.articles.map((article: any) => (
+          {section.children.map((children: any) => (
             <Paper
-              key={article.id}
+              key={children.id}
               elevation={0}
               sx={{
-                p: 2,
+                py: 2,
                 borderRadius: 0,
-                display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'space-between',
-                transition: 'all 0.2s',
-                borderBottom: 1,
-                borderColor: 'divider',
               }}
             >
-              <Typography variant="body1">
-                {article.title}
-              </Typography>
+              <CustomBox sx={{ mb: 2 }}>
+                <Typography variant="h6" color="primary" gutterBottom>
+                  {children.title}
+                </Typography>
+              </CustomBox>
+              <CustomBox>
+                <Typography>
+                  {children.description}
+                </Typography>
+              </CustomBox>
               <ArticleAction
-                action={article.action}
-                onAction={() => handleAction(article.id, article.action)}
+                action={children.action}
+                onAction={() => handleAction(children.id, children.action)}
               />
             </Paper>
           ))}
         </CustomBox>
       ) : (
-        <CustomBox sx={{ py: 8, textAlign: 'center' }}>
+        <CustomBox sx={{ p: 14, textAlign: 'center' }}>
           <Typography variant="body1" color="text.secondary">
-            No hay artículos disponibles en esta sección
+            No hay artículos o documentos disponibles en esta sección.
           </Typography>
         </CustomBox>
       )}

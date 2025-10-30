@@ -29,7 +29,7 @@ export const env = {
     },
     helps: {
       getAll: {
-         endpoint: 'helps',   
+         endpoint: 'help',   
          version: 'v1'
       }
     },

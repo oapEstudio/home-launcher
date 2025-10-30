@@ -1,48 +1,37 @@
 import React from 'react';
-import { Breadcrumbs } from '../common/Breadcrumbs';
 import { CustomBox } from '../../../../components/ui/box/CustomBox';
 import { Container, Paper, Typography } from '@mui/material';
-import Divider from '../../../../components/ui/divider';
-import { helpSections } from '../../mocks/mock-data';
 import { Sidebar } from '../layout/Sidebar';
 import { SectionContent } from '../content/SectionContent';
-import { colors } from '../../../../common/colors';
+import type { IHelp } from '../../../../../domain/entities/IHelp';
 
 
 interface DesktopLayoutProps {
-  currentSection: string | null;
+  currentSection: string;
   onSectionClick: (sectionId: string) => void;
+  helpSections: IHelp[]
 }
 
 export const DesktopLayout: React.FC<DesktopLayoutProps> = ({
   currentSection,
-  onSectionClick
+  onSectionClick,
+  helpSections = [],
 }) => {
   const section = helpSections.find(s => s.id === currentSection);
 
   return (
     <CustomBox sx={{ display: 'flex' }}>
-
-      <Container>
-
-        <CustomBox sx={{ textAlign: 'center', py: 4 }}>
-          <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
-            Mesa de ayuda
-          </Typography>
-          <Divider sx={{ width: 100, borderBottomWidth: 1, mx: 'auto', mt: 2,  borderColor: colors.palette.primary.main }} />
+      <CustomBox sx={{ display: 'flex' }}>
+        <Sidebar
+          helpSections={helpSections}
+          currentSection={currentSection}
+          onSectionClick={onSectionClick}
+          isMobile={false}
+        />
+        <CustomBox sx={{ paddingLeft: 5 }}>
+          <SectionContent section={section} />
         </CustomBox>
-        <CustomBox sx={{ display: 'flex' }}>
-
-          <Sidebar
-            currentSection={currentSection}
-            onSectionClick={onSectionClick}
-            isMobile={false}
-          />
-          <CustomBox sx={{paddingLeft: 10 }}>
-            <SectionContent section={section} />
-          </CustomBox>
-        </CustomBox>
-      </Container>
+      </CustomBox>
     </CustomBox>
   );
 };

@@ -14,6 +14,7 @@ import type { NavItem } from '../menu-home/types';;
 import { DividerCell } from './components/DividerCell';import { selectedIconsNotificationCommon } from '../../../utils/selected-icon-notification-common';
 import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNotificationCommon';
 import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
+import { useNavigate } from 'react-router-dom';
 ;
 
 interface INavBarLauncherProps{
@@ -24,7 +25,7 @@ interface INavBarLauncherProps{
 
 
 export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu }) => {
-  
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
   const {result: resultNotifications, loading: loadingNotifications} = useGetNotificationCommon({
@@ -120,6 +121,7 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
                <Button             
                   variant="secondaryTwo"
                   title="Ayuda"
+                  onClick={() => navigate('/help')}
                   style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
                   icon={<HelpIcon />}
                 />

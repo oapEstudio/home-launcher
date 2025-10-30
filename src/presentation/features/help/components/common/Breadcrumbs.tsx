@@ -1,6 +1,6 @@
 import React from 'react';
-import { Breadcrumbs as MuiBreadcrumbs, Link, Typography } from '@mui/material';
-
+import { Breadcrumbs as MuiBreadcrumbs, Typography } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 
 interface BreadcrumbsProps {
   section?: any;
@@ -8,45 +8,34 @@ interface BreadcrumbsProps {
   onBackToMenu?: () => void;
 }
 
-export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ 
-  section, 
-  isMobile, 
-  onBackToMenu 
+export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
+  section,
+  isMobile,
+  onBackToMenu
 }) => {
-  // Construir breadcrumbs como array
   const breadcrumbItems = [
-    <Link
-      key="inicio"
-      underline="hover"
-      color="inherit"
-      href="#"
-      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.preventDefault()}
-    >
+    <RouterLink key="inicio" to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
       Inicio
-    </Link>
+    </RouterLink>
   ];
 
   if (isMobile && section) {
     breadcrumbItems.push(
-      <Link
+      <RouterLink
         key="ayuda"
-        underline="hover"
-        color="inherit"
-        href="#"
-        onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-          e.preventDefault();
-          onBackToMenu?.();
-        }}
+        to="/help"
+        onClick={(e) => onBackToMenu?.()}
+        style={{ textDecoration: 'none', color: 'inherit' }}
       >
         Ayuda
-      </Link>,
+      </RouterLink>,
       <Typography key="section" color="primary">
         {section.title}
       </Typography>
     );
   } else {
     breadcrumbItems.push(
-      <Typography key="ayuda" color="text.primary">
+      <Typography key="ayuda" color="primary">
         Ayuda
       </Typography>
     );
