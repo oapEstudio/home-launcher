@@ -71,9 +71,13 @@ export const HelpPage = () => {
         </CustomBox>
 
         {loading ? (
-          <center>
-            <Loading />
-          </center>
+
+          <CustomBox sx={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <center>
+              <Loading />
+            </center>
+          </CustomBox>
+
         ) : (
           <CustomBox sx={{ flexGrow: 1, overflow: "hidden" }}>
             {isMobile ? (
