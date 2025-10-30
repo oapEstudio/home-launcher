@@ -9,10 +9,15 @@
     border: none;
 }
 
+.buttonCloseResponsive{
+    display: none !important;
+}
 @media (min-width: 320px) and (max-width: 480px) {
   
     .buttonHelp button{
         display: none;  
     }
-
+    .buttonCloseResponsive{
+        display: block !important;
+    }
 }

@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
-import { RedStripe } from './components/RedStripe';
 import { CustomBox } from '../../ui/box/CustomBox';
 import { CustomStack } from '../../ui/stack/Stack';
-import { HelpIcon, WarningIcon } from '../../ui/icons';
+import { ExitIcon, HelpIcon } from '../../ui/icons';
 import LogoYPF from '../../ui/icons/ypf-logo/ypf-logo';
 import Typography from '@mui/material/Typography';
 import { Button } from '../../ui/button';
@@ -15,17 +14,22 @@ import { DividerCell } from './components/DividerCell';import { selectedIconsNot
 import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNotificationCommon';
 import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
 import { useNavigate } from 'react-router-dom';
-;
+import IconButton from '@mui/material/IconButton';
+import ButtonGroup from '@mui/material/ButtonGroup';
+
 
 interface INavBarLauncherProps{
   userName: string;
   menues: NavItem[];
   syncMenu: boolean;
+  logout: ()=>void;
 }
 
 
-export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu }) => {
+export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu, logout }) => {
   const navigate = useNavigate();
+
+
   const [open, setOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
   const {result: resultNotifications, loading: loadingNotifications} = useGetNotificationCommon({
@@ -35,10 +39,11 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
   const notifications = useMemo(
                   () => (resultNotifications?.data ? mapCommonToGroups(resultNotifications.data): null),
                   [resultNotifications?.data]
-                )
+                );
+ 
+
   return (
-    <>      
-      <CustomBox
+    <CustomBox
         component="header"
         sx={{
           px: { xs: '4%', md: '8.5%' },
@@ -89,7 +94,7 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
          
           <CustomStack
             direction="row"
-            sx={{ alignItems: 'center', gap: 2, overflow: 'visible' }}
+            sx={{ alignItems: 'center', gap: { xs: 0.7, md: 2 }, overflow: 'visible' }}
           >
             <CustomStack
               sx={{
@@ -100,10 +105,10 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
               }}
             >
               <Typography variant="body1" sx={{ color: 'primary.main' }}>
-                Hola, <span style={{ textTransform: 'uppercase' }}>{userName}</span>
+                                Hola, <span style={{ textTransform: 'uppercase' }}>{userName || 'Usuario'}</span>
               </Typography>
               <div className="containerCloseSesion">
-                <Button variant="secondary" title="Cerrar sesión" />
+                                <Button variant="secondary" title="Cerrar sesión" onClick={logout} />
               </div>
             </CustomStack>
 
@@ -126,9 +131,14 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
                   icon={<HelpIcon />}
                 />
             </div>
+             <ButtonGroup variant="contained" className='buttonCloseResponsive' onClick={logout}>
+                <IconButton color='error'>
+                  <ExitIcon />
+                </IconButton>
+             </ButtonGroup>
+
           </CustomStack>
         </CustomStack>
       </CustomBox>
-    </>
   );
 };

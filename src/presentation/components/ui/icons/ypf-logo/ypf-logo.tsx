@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { CustomStack } from '../../stack/Stack';
 import { colors } from '../../../../common/colors';
 import './ypf-logo.css';
+import Typography from '@mui/material/Typography';
 
 interface IYPFLogo{
   link: string
@@ -49,7 +50,20 @@ const LogoYPF: React.FC<IYPFLogo> = ({link}) => (
       <CustomStack direction='row' sx={{justifyContent: 'center',alignItems: 'center'}}>
         <LogoImage src={YPFLogo} alt={'LOGO Back-Office'} />
         <Divider sx={{height: {xs: '1.25rem'}}}/>
-        <LogoText>EXTRANET</LogoText>
+        <Typography 
+          component={'span'}
+          style={{ 
+          fontFamily: 'Open Sans, Arial, sans-serif',
+          fontWeight: 400,
+          fontStyle: 'normal',                 
+          lineHeight: 1,          
+          letterSpacing: '0.29em',
+          color: '#AAAAAA'}}
+          sx={{
+            fontSize: {xs: '0.7rem',md: '1rem'},
+          }}>
+            EXTRANET
+          </Typography>        
       </CustomStack>
   </Container>
 );
