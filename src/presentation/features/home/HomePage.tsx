@@ -14,10 +14,12 @@ import Skeleton from '@mui/material/Skeleton';
 import { CustomStack } from '../../components/ui/stack/Stack';
 
 import { toSlide } from './mappers/notificationCarouselMapper';
+import { useNavigate } from 'react-router-dom';
 
 
 export const HomePage = () => {
 
+  const navigate = useNavigate();
 
   const {
       resultHighlighted,
@@ -58,7 +60,8 @@ export const HomePage = () => {
                 borderBottom: `1px solid ${colors.palette.primary.main}`,alignContent: 'center', justifyItems: 'center', marginTop: '5rem', marginBottom: '3rem', height: '4rem', backgroundColor: '#FAFAFA', width: '104%', left: 0, position: 'relative', marginLeft: '-2%', marginRight: '0px'}}>
                  <Button             
                   variant="secondaryTwo"
-                  title="Contáctanos"
+                  title="Ayuda"
+                  onClick={() => navigate('/help')}
                   style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
                   icon={<HelpIcon />}
                 />

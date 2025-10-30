@@ -13,6 +13,7 @@ import type { NavItem } from '../menu-home/types';;
 import { DividerCell } from './components/DividerCell';import { selectedIconsNotificationCommon } from '../../../utils/selected-icon-notification-common';
 import { useGetNotificationCommon } from '../../../features/home/hooks/useGetNotificationCommon';
 import { mapCommonToGroups } from '../../../features/home/mappers/notificationBellMapper';
+import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
@@ -26,7 +27,8 @@ interface INavBarLauncherProps{
 
 
 export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menues, syncMenu, logout }) => {
-  
+  const navigate = useNavigate();
+
 
   const [open, setOpen] = React.useState(false);
   const btnRef = React.useRef<HTMLButtonElement | null>(null);
@@ -123,7 +125,8 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
             <div className='buttonHelp'>
                <Button             
                   variant="secondaryTwo"
-                  title="Contáctanos"
+                  title="Ayuda"
+                  onClick={() => navigate('/help')}
                   style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
                   icon={<HelpIcon />}
                 />

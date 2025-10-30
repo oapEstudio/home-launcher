@@ -27,6 +27,12 @@ export const env = {
          version: 'v1'
       }
     },
+    helps: {
+      getAll: {
+         endpoint: 'help',   
+         version: 'v1'
+      }
+    },
     notificationCommon: {
       getAll: {
          endpoint: 'notificationCommon',   

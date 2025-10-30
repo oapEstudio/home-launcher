@@ -14,9 +14,16 @@ export const HOME: IRoute = {
     viewNav: true
 }
 
+export const HELP: IRoute = {
+    title: 'Mesa de ayuda',
+    name: '/help',
+    children: [],
+    viewNav: true
+}
 
 
 
 export const ROUTES: IRoute[] =[
-    HOME
+    HOME,
+    HELP
 ];
