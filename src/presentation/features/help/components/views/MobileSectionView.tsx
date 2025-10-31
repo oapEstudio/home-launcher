@@ -1,4 +1,3 @@
-import { Paper } from "@mui/material";
 import { CustomBox } from "../../../../components/ui/box/CustomBox";
 import Button from "@mui/material/Button";
 import { SectionContent } from "../content/SectionContent";
@@ -14,8 +13,8 @@ export const MobileSectionView: React.FC<MobileSectionViewProps> = ({
   onBackToMenu
 }) => {
   return (
-    <CustomBox sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <CustomBox sx={{ minHeight: '50vh', display: 'flex', flexDirection: 'column' }}>
+    <CustomBox sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%' }}>
+      <CustomBox sx={{ minHeight: '50vh', display: 'flex', flexDirection: 'column', width: '100%' }}>
         <SectionContent section={section} />
       </CustomBox>
       <Button

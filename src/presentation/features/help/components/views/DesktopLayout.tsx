@@ -20,18 +20,16 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({
   const section = helpSections.find(s => s.id === currentSection);
 
   return (
-    <CustomBox sx={{ display: 'flex' }}>
-      <CustomBox sx={{ display: 'flex' }}>
+      <CustomBox sx={{ display: 'flex', width: '100%' }}>
         <Sidebar
           helpSections={helpSections}
           currentSection={currentSection}
           onSectionClick={onSectionClick}
           isMobile={false}
         />
-        <CustomBox sx={{ paddingLeft: 5 }}>
+        <CustomBox sx={{ paddingLeft: 5, width: '100%'}}>
           <SectionContent section={section} />
         </CustomBox>
-      </CustomBox>
     </CustomBox>
   );
 };

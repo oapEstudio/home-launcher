@@ -10,8 +10,10 @@ HelpPage.tsx
 │   │   └── SectionList
 │   │   
 │   └── SectionContent
-│       └── ArticleList
-│           └── ArticleAction
+│           ├── Article
+│           │     └──  Document
+            │
+│           └── Document          
 └── [Mobile] 
     ├── MobileMenuView
     │   └── SectionList

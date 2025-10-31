@@ -5,7 +5,7 @@ import { MobileSectionView } from "./components/views/MobileSectionView";
 import { MobileMenuView } from "./components/views/MobileMenuView";
 import { DesktopLayout } from "./components/views/DesktopLayout";
 import { Breadcrumbs } from "./components/common/Breadcrumbs";
-import { Container, Divider, Typography } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { colors } from "../../common/colors";
 import { useGetHelp } from "./hooks/useGetHelp";
 import Loading from "../../components/ui/loading";
@@ -79,7 +79,7 @@ export const HelpPage = () => {
           </CustomBox>
 
         ) : (
-          <CustomBox sx={{ flexGrow: 1, overflow: "hidden" }}>
+          <CustomBox sx={{ flexGrow: 1, overflow: "hidden", width: '100%', display: 'flex' }}>
             {isMobile ? (
               <>
                 {currentView === "menu" ? (
@@ -90,7 +90,7 @@ export const HelpPage = () => {
                     />
                   </CustomBox>
                 ) : (
-                  <CustomBox sx={{ height: "100%", overflow: "auto" }}>
+                  <CustomBox sx={{ height: "100%", overflow: "auto" , width: '95%', margin: 'auto' }}>
                     <MobileSectionView
                       section={section}
                       onBackToMenu={handleBackToMenu}
