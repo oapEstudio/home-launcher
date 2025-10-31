@@ -1,7 +1,7 @@
 export interface IHelp {
   id: string;
   helpTypeId: number | null;
-  helpType: string | null;
+  helpType: string;
   name: string;
   title: string;
   description: string;
@@ -11,8 +11,8 @@ export interface IHelp {
   statusId: number | null;
   statusDescription: string | null;
   statusColor: string | null;
-  helpDocumentTypeId: number | null;
-  helpDocumentType: string | null;
+  helpDocumentTypeId: number;
+  helpDocumentType: string;
   document: IDocument[];
   profile: IProfile[]; 
   dateUpdated: string;

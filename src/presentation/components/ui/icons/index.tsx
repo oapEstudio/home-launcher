@@ -45,6 +45,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import LinkIcon from '@mui/icons-material/Link';
 import SvgIcon from '@mui/material/SvgIcon';
 import type { ElementType } from "react";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 export interface IIconAction{
   handleClick?: any,
@@ -175,6 +176,10 @@ export const UserAvatar = () => {
 
 export const EyeIcon = () => {
   return <RemoveRedEyeIcon sx={{ color: baselightTheme.palette.info.dark }} />;
+};
+
+export const Visibility = () => {
+  return <VisibilityIcon />;
 };
 
 export const PencilIcon = () => {

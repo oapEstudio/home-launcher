@@ -3,6 +3,11 @@ export const HELP_ARTICLE = 2;
 export const HELP_DOCUMENT = 3;
 export const HELP_INVISIBLE = 4;
 
+
+export const HELP_DOCUMENT_LINK = 1;
+export const HELP_DOCUMENT_DOWNLOAD = 2;
+export const HELP_DOCUMENT_PDF = 3;
+
 export const HELP_TYPES: Record<number, string> = {
   [HELP_SECTION]: 'Sección',
   [HELP_ARTICLE]: 'Artículo',

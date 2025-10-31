@@ -1,47 +1,49 @@
 import { IconButton, Typography } from "@mui/material";
 import type { JSX } from "react";
-import { DownloaddIcon, EyeIcon } from "../../../../components/ui/icons";
+import { DownloaddIcon, Visibility } from "../../../../components/ui/icons";
+import { HELP_DOCUMENT_DOWNLOAD, HELP_DOCUMENT_LINK, HELP_DOCUMENT_PDF } from "../../contants/helps";
 
-interface ArticleActionProps {
-  action: any; //ArticleActionType
-  onAction: () => void;
+interface DocumentActionProps {
+  helpDocumentTypeId: number;
 }
 
-export const ArticleAction: React.FC<ArticleActionProps> = ({ action, onAction }) => {
+const onAction = () => {
+  const win = window.open('https://www.google.com', '_blank', 'noopener,noreferrer');
+  if (win) win.focus();
+};
+
+export const DocumentAction: React.FC<DocumentActionProps> = ({ helpDocumentTypeId }) => {
   const renderAction = (): JSX.Element | null => {
-    switch (action) {
-      case 'download':
+    switch (helpDocumentTypeId) {
+      case HELP_DOCUMENT_DOWNLOAD:
         return (
           <IconButton
             size="small"
-            color="primary"
             onClick={onAction}
             aria-label="descargar"
           >
             <DownloaddIcon />
           </IconButton>
         );
-      
-      case 'view':
+
+      case HELP_DOCUMENT_LINK:
         return (
           <IconButton
             size="small"
-            color="primary"
             onClick={onAction}
             aria-label="ver"
           >
-            <EyeIcon />
+            <Visibility />
           </IconButton>
         );
-      
-      case 'explore':
+
+      case HELP_DOCUMENT_PDF:
         return (
           <Typography
-            variant="body2"
-            color="primary"
             sx={{
               cursor: 'pointer',
               fontWeight: 500,
+              fontSize: '0.9rem',
               '&:hover': { textDecoration: 'underline' }
             }}
             onClick={onAction}
@@ -49,7 +51,7 @@ export const ArticleAction: React.FC<ArticleActionProps> = ({ action, onAction }
             Explorar
           </Typography>
         );
-      
+
       default:
         return null;
     }
