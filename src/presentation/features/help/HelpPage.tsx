@@ -5,10 +5,11 @@ import { MobileSectionView } from "./components/views/MobileSectionView";
 import { MobileMenuView } from "./components/views/MobileMenuView";
 import { DesktopLayout } from "./components/views/DesktopLayout";
 import { Breadcrumbs } from "./components/common/Breadcrumbs";
-import { Divider, Typography } from "@mui/material";
+import { Divider, Skeleton, Typography } from "@mui/material";
 import { colors } from "../../common/colors";
 import { useGetHelp } from "./hooks/useGetHelp";
 import Loading from "../../components/ui/loading";
+import { CustomStack } from "../../components/ui/stack/Stack";
 
 export const HelpPage = () => {
   const { isMobile } = useResponsive();
@@ -71,26 +72,24 @@ export const HelpPage = () => {
         </CustomBox>
 
         {loading ? (
-
-          <CustomBox sx={{ minHeight: '50vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <center>
-              <Loading />
-            </center>
-          </CustomBox>
+          <CustomStack sx={{ padding: '1%' }} direction='row' spacing={1}>
+            <Skeleton variant="rectangular" height={450} sx={{ width: { xs: '100%', md: '25%' } }} />
+            <Skeleton variant="rectangular" height={450} sx={{ width: { md: '75%' } }} />
+          </CustomStack>
 
         ) : (
           <CustomBox sx={{ flexGrow: 1, overflow: "hidden", width: '100%', display: 'flex' }}>
             {isMobile ? (
               <>
                 {currentView === "menu" ? (
-                  <CustomBox sx={{ height: "100%", overflow: "auto" }}>
+                  <CustomBox sx={{ height: "100%", overflow: "auto", width: '100%' }}>
                     <MobileMenuView
                       onSectionClick={handleSectionClick}
                       helpSections={result?.data || []}
                     />
                   </CustomBox>
                 ) : (
-                  <CustomBox sx={{ height: "100%", overflow: "auto" , width: '95%', margin: 'auto' }}>
+                  <CustomBox sx={{ height: "100%", overflow: "auto", width: '95%', margin: 'auto' }}>
                     <MobileSectionView
                       section={section}
                       onBackToMenu={handleBackToMenu}

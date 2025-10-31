@@ -16,7 +16,7 @@ interface MobileMenuViewProps {
 export const MobileMenuView: React.FC<MobileMenuViewProps> = ({ onSectionClick, helpSections }) => {
 
   return (
-    <CustomBox>
+    <CustomBox sx={{ width: '100%' }}>
 
       <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
         ÍNDICE
