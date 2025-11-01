@@ -56,6 +56,28 @@ export const Carousel: React.FC<ICarouselProps> = ({
       position: 'relative',
       height: { xs: height + PLUS_HEIGHT_RESPONSIVE, md: height }, 
       overflow: 'hidden',
+      '&:hover .carousel-arrow': {          
+          backgroundColor: 'rgba(255,255,255,0.8)',
+          boxShadow: '0 6px 18px rgba(0,0,0,0.18)',
+        },
+      '&:hover .carousel-arrow-left': {
+        borderTopLeftRadius: '40px',
+        borderBottomLeftRadius: '40px',
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: '5%',
+      },
+      '&:hover .carousel-arrow-right': {        
+        borderTopRightRadius: '40px',
+        borderBottomRightRadius: '40px',
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: '5%',
+      },
+      '@media (max-width: 600px)': {
+        '&:hover .carousel-arrow': { 
+           backgroundColor: 'transparent',
+            boxShadow: 'none'
+        },
+      }
     }}
     >
       {/* Fondo de imagen del slide actual */}

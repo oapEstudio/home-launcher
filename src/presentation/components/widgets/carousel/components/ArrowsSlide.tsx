@@ -14,10 +14,11 @@ export const ArrowsSlide: React.FC<IArrowsSlideProps> = ({goPrev,goNext,arrowsAt
     <>
       <IconButton
                 onClick={goPrev}
-                aria-label="Anterior"                
+                aria-label="Anterior"
+                className="carousel-arrow carousel-arrow-right"                
                 sx={{
                   position: { xs: 'absolute', md: arrowsAtEdges ? 'absolute' : 'absolute' },
-                  left: { xs: 12, md: arrowsAtEdges ? 16 : 12 },
+                  left: { xs: 12, md: 0 },
                   top: '50%',
                   fontSize: '2.5rem',
                   transform: 'translateY(-50%)',
@@ -30,10 +31,11 @@ export const ArrowsSlide: React.FC<IArrowsSlideProps> = ({goPrev,goNext,arrowsAt
     
               <IconButton
                 onClick={goNext}
+                className="carousel-arrow carousel-arrow-left"
                 aria-label="Siguiente"
                 sx={{
                   position: { xs: 'absolute', md: arrowsAtEdges ? 'absolute' : 'absolute' },
-                  right: { xs: 12, md: arrowsAtEdges ? 16 : 12 },
+                  right: { xs: 12, md: 0 },
                   top: '50%',
                   fontSize: '2.5rem',
                   transform: 'translateY(-50%)',
