@@ -6,7 +6,7 @@ import { CustomStack } from '../../ui/stack/Stack';
 import { ContainerSlideTitle } from './components/ContainerSlideTitle';
 import { ArrowsSlide } from './components/ArrowsSlide';
 
-
+import { alpha, useTheme } from '@mui/material/styles';
 
 interface ICarouselProps{
   slides: ISlide[];
@@ -26,6 +26,10 @@ export const Carousel: React.FC<ICarouselProps> = ({
   const [index, setIndex] = useState(0);
   const timer = useRef<number | null>(null);
   const items = useMemo(() => slides?.filter((s) => s.isActive) ?? [], [slides]);
+
+  const theme = useTheme();
+  const blendColor = theme.palette.background.default; 
+  const blendHeight = { xs: 64, md: 96 };  
 
   useEffect(() => {
     stop();
@@ -110,6 +114,24 @@ export const Carousel: React.FC<ICarouselProps> = ({
       }}
       />
 
+ <CustomBox
+        sx={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: { xs: 160, md: 220 },
+          background:  `linear-gradient(
+                        to bottom,
+                        rgba(255,255,255,0) 0%,       
+                        rgba(255,255,255,0.05) 25%,   
+                        rgba(255,255,255,0.25) 55%,   
+                        ${blendColor} 100%            
+                      )`,
+          pointerEvents: 'none',
+          zIndex: 1, 
+        }}
+      />
     <ContainerSlideTitle height={height} title={s.title} subtitle={s.subtitle} button={s.cta} />
       
       {items.length > 1 && (
