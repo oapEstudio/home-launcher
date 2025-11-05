@@ -20,7 +20,7 @@ export const DocumentAction: React.FC<DocumentActionProps> = ({ help }) => {
     switch (help.helpDocumentTypeId) {
       case HELP_DOCUMENT_DOWNLOAD:
         return (
-          <Tooltip title={`Descargar archivo`} arrow>
+          <Tooltip title={`Descargar archivo`} placement="top" arrow>
             <IconButton
               color="primary"
               size="small"
@@ -35,7 +35,7 @@ export const DocumentAction: React.FC<DocumentActionProps> = ({ help }) => {
 
       case HELP_DOCUMENT_PDF:
         return (
-          <Tooltip title={`Ver pdf`} arrow>
+          <Tooltip title={`Ver pdf`} placement="top" arrow>
             <IconButton
               color="primary"
               size="small"
@@ -49,7 +49,7 @@ export const DocumentAction: React.FC<DocumentActionProps> = ({ help }) => {
 
       case HELP_DOCUMENT_LINK:
         return (
-          <Tooltip title={`Ver enlace ${help.title}`} arrow>
+          <Tooltip title={`Ver enlace`} placement="top" arrow>
             <Typography
               sx={{
                 cursor: 'pointer',

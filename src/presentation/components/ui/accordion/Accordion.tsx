@@ -29,23 +29,22 @@ export const CustomAccordion: React.FC<CustomAccordionProps> = ({
                 boxShadow: 'none',
                 border: 'none',
                 borderRadius: 0,
-                borderBottom: '1px solid #E0E0E0',
+                padding: 0,
                 '&:before': {
                     display: 'none',
                 },
                 '&.Mui-expanded': {
                     margin: 0,
                     borderRadius: 0,
-
+                    padding: 0,
                 }
             }}
         >
             <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 sx={{
-                    minHeight: 56,
                     '&.Mui-expanded': {
-                        minHeight: 56,
+                        minHeight: 30,
                     },
                     ...summarySx
                 }}

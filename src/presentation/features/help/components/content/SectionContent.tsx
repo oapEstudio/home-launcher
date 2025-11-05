@@ -35,50 +35,43 @@ export const SectionContent: React.FC<SectionContentProps> = ({ section }) => {
 
   return (
     <>
-      {section.children && section.children.length > 0 ? (
-        <CustomBox sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <CustomBox sx={{ mb: 3, mt: 3 }}>
-            <Typography 
-              variant="h5" 
-              component="h5"
-              sx={{ 
-                fontSize: '1.3rem',
-                fontWeight: 600,
-                color: 'primary.main',
-                mb: 1
-              }}
-            >
-              {section.title}
-            </Typography>
-            <Divider sx={{ width: 60, borderBottomWidth: 2, borderColor: 'primary.main' }} />
-          </CustomBox>
-          {section.children.map((child: IHelp) => {
-            if (!child) return null;
-
-            if (child.helpTypeId === HELP_ARTICLE) {
-              return (
-                <ArticleItem
-                  key={child.id}
-                  item={child}
-                  showAccordion={showAccordion}
-                />
-              );
-            }
-
-            if (child.helpTypeId === HELP_DOCUMENT) {
-              return <DocumentItem key={child.id} item={child} />;
-            }
-
-            return null;
-          })}
-        </CustomBox>
-      ) : (
-        <CustomBox sx={{ p: 4, ml: 12, mt: 5, minHeight: 300, display: 'flex', alignItems: 'center' }}>
-          <Typography variant="body1" color="text.secondary">
-            No hay artículos o documentos disponibles en esta sección.
+      <CustomBox sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        <CustomBox sx={{ mb: 3, mt: 2 }}>
+          <Typography
+            variant="h5"
+            component="h5"
+            sx={{
+              fontSize: '1.3rem',
+              fontWeight: 600,
+              color: 'primary.main',
+              mb: 1.5
+            }}
+          >
+            {section.title}
           </Typography>
+          <Divider sx={{ width: 60, borderBottomWidth: 2, borderColor: 'primary.main' }} />
         </CustomBox>
-      )}
+        {section.children.map((child: IHelp) => {
+          if (!child) return null;
+
+          if (child.helpTypeId === HELP_ARTICLE) {
+            return (
+              <ArticleItem
+                key={child.id}
+                item={child}
+                showAccordion={showAccordion}
+              />
+            );
+          }
+
+          if (child.helpTypeId === HELP_DOCUMENT) {
+            return <DocumentItem key={child.id} item={child} />;
+          }
+
+          return null;
+        })}
+      </CustomBox>
+
     </>
   );
 };

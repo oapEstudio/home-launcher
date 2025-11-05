@@ -76,12 +76,10 @@ export const HelpPage = () => {
             {isMobile ? (
               <>
                 {currentView === "menu" ? (
-                  <CustomBox sx={{ height: "100%", overflow: "auto", width: '100%' }}>
                     <MobileMenuView
                       onSectionClick={handleSectionClick}
                       helpSections={result?.data || []}
                     />
-                  </CustomBox>
                 ) : (
                   <CustomBox sx={{ height: "100%", overflow: "auto", width: '95%', margin: 'auto' }}>
                     <MobileSectionView

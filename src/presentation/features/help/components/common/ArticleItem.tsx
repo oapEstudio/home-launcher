@@ -3,6 +3,8 @@ import { CustomBox } from "../../../../components/ui/box/CustomBox";
 import type { IHelp } from "../../../../../domain/entities/IHelp";
 import { DocumentItem } from "./DocumentItem";
 import { CustomAccordion } from "../../../../components/ui/accordion/Accordion";
+import Divider from "../../../../components/ui/divider";
+import { colors } from "../../../../common/colors";
 
 interface ArticleItemProps {
   item: IHelp;
@@ -75,17 +77,12 @@ export const ArticleItem: React.FC<ArticleItemProps> = ({
   }
 
   return (
-    <CustomAccordion
+    <><CustomAccordion
       title={item.title}
       titleSx={{
         fontSize: '1.1rem',
       }}
-      accordionSx={{
-        border: 'none',
-        borderRadius: 0,
-        borderBottom: '1px solid #E0E0E0'
-      }}
-      content={content}
-    />
+      content={content} />
+      <Divider/></>
   );
 };
