@@ -11,43 +11,14 @@ interface DocumentItemProps {
 }
 
 export const DocumentItem: React.FC<DocumentItemProps> = ({ item }) => (
-    <Paper
-        key={item.id}
-        elevation={0}
-        sx={{ py: 2, borderRadius: 0, alignItems: "center", width: '100%', display: 'flex', flexDirection: 'column' }}
-    >
-        <CustomBox sx={{ minHeight: '60px',  py: 2, display: 'flex', justifyContent: 'space-between', borderBottom: `1px solid ${colors.divider}`, width: '100%' }}>
+
+        <CustomBox sx={{ py: 2, display: 'flex', justifyContent: 'space-between', borderBottom: `1px solid ${colors.divider}`, width: '100%' }}>
             <Typography variant="h6" gutterBottom sx={{
                 fontSize: '0.95rem',
                 padding: 0,
                 margin: 0,
-                fontWeight: 600,
-            }}>
-                Documento Descargable
+            }}>{item.title}
             </Typography>
-            <DocumentAction helpDocumentTypeId={HELP_DOCUMENT_DOWNLOAD} />
+            <DocumentAction help={item} />
         </CustomBox>
-        <CustomBox sx={{ minHeight: '60px', py: 2, display: 'flex', justifyContent: 'space-between', borderBottom: `1px solid ${colors.divider}`, width: '100%' }}>
-            <Typography variant="h6" gutterBottom sx={{
-                fontSize: '0.95rem',
-                padding: 0,
-                margin: 0,
-                fontWeight: 600,
-            }}>
-                PDF Manual
-            </Typography>
-            <DocumentAction helpDocumentTypeId={HELP_DOCUMENT_PDF} />
-        </CustomBox>
-        <CustomBox sx={{ minHeight: '60px', py: 2, display: 'flex', justifyContent: 'space-between', borderBottom: `1px solid ${colors.divider}`, width: '100%' }}>
-            <Typography variant="h6" gutterBottom sx={{
-                fontSize: '0.95rem',
-                padding: 0,
-                margin: 0,
-                fontWeight: 600,
-            }}>
-                Ven entrevista por Youtube
-            </Typography>
-            <DocumentAction helpDocumentTypeId={HELP_DOCUMENT_LINK} />
-        </CustomBox>
-    </Paper>
 );

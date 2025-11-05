@@ -18,7 +18,7 @@ export const MobileMenuView: React.FC<MobileMenuViewProps> = ({ onSectionClick, 
   return (
     <CustomBox sx={{ width: '100%' }}>
 
-      <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2 }}>
+      <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 2, fontSize: '1.1rem'  }}>
         ÍNDICE
       </Typography>
       <Divider sx={{ borderBottomWidth: 1, mx: 'auto', mt: 1 }} />
@@ -43,7 +43,6 @@ export const MobileMenuView: React.FC<MobileMenuViewProps> = ({ onSectionClick, 
                     fontSize: '1rem',
                     padding: 0,
                     margin: 0,
-                    fontWeight: 600,
                   },
                 }}
               />

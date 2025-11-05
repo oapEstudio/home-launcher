@@ -55,20 +55,14 @@ export const HelpPage = () => {
           isMobile={isMobile}
           onBackToMenu={handleBackToMenu}
         />
-        <CustomBox sx={{ textAlign: "center", py: 4 }}>
+        <CustomBox sx={{ textAlign: "center", py: 4, mb: 3, mt: 4}}>
 
-          <Typography variant="h3" sx={{ fontWeight: "bold" }}>
-            Mesa de ayuda
-          </Typography>
-          <Divider
-            sx={{
-              width: 100,
-              borderBottomWidth: 1,
-              mx: "auto",
-              mt: 2,
-              borderColor: colors.palette.primary.main,
-            }}
-          />
+        <Typography variant="h3" sx={{ fontWeight: 700, mb: 1 }}>
+          Mesa de ayuda
+        </Typography>
+        <Typography variant="body1" color="text.secondary">
+          Encuentra documentación y recursos de ayuda
+        </Typography>
         </CustomBox>
 
         {loading ? (

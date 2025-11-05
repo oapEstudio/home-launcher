@@ -26,7 +26,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const drawerContent = (
     <CustomBox sx={{ display: 'flex', flexDirection: 'column', height: '100%', border: 'none' }}>
       <CustomBox sx={{ py: 3, flexGrow: 1, overflowY: 'auto' }}>
-        <H6 style={{ fontWeight: 'bold', margin: 0 }}>ÍNDICE</H6>
+        <H6 style={{ fontWeight: 'bold', margin: 0, fontSize: '1rem' }}>ÍNDICE</H6>
         <Divider sx={{ borderBottomWidth: 1, mx: 'auto', mt: 1 }} />
 
         <List disablePadding>
@@ -55,7 +55,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     fontSize: '0.9rem',
                     padding: 0,
                     margin: 0,
-                    fontWeight: 600,
                   },
                 }}
               />
