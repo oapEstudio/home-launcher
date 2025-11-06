@@ -28,7 +28,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
   const items = useMemo(() => slides?.filter((s) => s.isActive) ?? [], [slides]);
 
   const theme = useTheme();
-  const blendColor = theme.palette.background.default; 
+  const blendColor = 'rgba(255, 255, 255, 1)'; 
   const blendHeight = { xs: 64, md: 96 };  
 
   useEffect(() => {
@@ -120,14 +120,22 @@ export const Carousel: React.FC<ICarouselProps> = ({
           left: 0,
           right: 0,
           bottom: 0,
-          height: { xs: 160, md: 220 },
-          background:  `linear-gradient(
-                        to bottom,
-                        rgba(255,255,255,0) 0%,       
-                        rgba(255,255,255,0.05) 25%,   
-                        rgba(255,255,255,0.25) 55%,   
-                        ${blendColor} 100%            
-                      )`,
+          height: { xs: 160, md: 320 },
+          background: `linear-gradient(
+            to bottom,
+            rgba(255,255,255,0) 0%,      
+            rgba(255,255,255,0.02) 20%,  
+            rgba(255,255,255,0.10) 40%,  
+            rgba(255,255,255,0.25) 60%,  
+            rgba(255,255,255,0.6) 80%,   
+            ${blendColor} 100%           
+          )`,
+
+         
+         
+
+       
+          transition: 'backdrop-filter 0.3s ease',
           pointerEvents: 'none',
           zIndex: 1, 
         }}
@@ -144,7 +152,7 @@ export const Carousel: React.FC<ICarouselProps> = ({
           sx={{
             gap: 1,
             position: 'absolute',
-            bottom: 12,
+            bottom: '15%',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1,

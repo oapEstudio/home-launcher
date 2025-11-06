@@ -25,15 +25,8 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
   const list = (items ?? []).slice(0, 4);
 
   return (
-    <CustomBox sx={{ py: 4 }}>
-      <Container style={{ maxWidth: '100%' }}>
-        <CustomBox sx={{ mb: 2 }}>
-          <Typography sx={{ fontWeight: 700, position: "relative" }}>
-            APLICACIONES DESTACADAS
-          </Typography>
-          <CustomDivider style={{ marginTop: '1px !important' }} />
-        </CustomBox>
-
+    <CustomBox sx={{ py: 4, position: 'relative', marginTop: '-5%', zIndex: '1000' }}>
+      <Container style={{ maxWidth: '100%' }}>       
         <CardsGrid>
           {list.map((q, index) => {
             const hoverBg = imgArrayhoverRelevant[index];
