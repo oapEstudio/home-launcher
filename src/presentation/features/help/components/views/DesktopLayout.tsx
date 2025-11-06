@@ -20,16 +20,23 @@ export const DesktopLayout: React.FC<DesktopLayoutProps> = ({
   const section = helpSections.find(s => s.id === currentSection);
 
   return (
-      <CustomBox sx={{ display: 'flex', width: '100%' }}>
-        <Sidebar
-          helpSections={helpSections}
-          currentSection={currentSection}
-          onSectionClick={onSectionClick}
-          isMobile={false}
-        />
-        <CustomBox sx={{ paddingLeft: 5, width: '100%'}}>
-          <SectionContent section={section} />
-        </CustomBox>
+    <CustomBox sx={{ display: 'flex', width: '100%' }}>
+      <Sidebar
+        helpSections={helpSections}
+        currentSection={currentSection}
+        onSectionClick={onSectionClick}
+        isMobile={false}
+      />
+      <CustomBox sx={{ paddingLeft: 5, width: '100%' }}>
+        <SectionContent section={section} />
+        {(!section || !section.children || section.children.length === 0) && (
+          <CustomBox>
+            <Typography variant="body1" color="text.secondary">
+              No hay artículos o documentos disponibles en esta sección.
+            </Typography>
+          </CustomBox>
+        )}
+      </CustomBox>
     </CustomBox>
   );
 };

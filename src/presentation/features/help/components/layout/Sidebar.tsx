@@ -8,7 +8,7 @@ const DRAWER_WIDTH = 280;
 
 interface SidebarProps {
   helpSections: IHelp[],
-  currentSection: string;
+  currentSection?: string;
   onSectionClick: (sectionId: string) => void;
   isMobile: boolean;
   open?: boolean;
@@ -25,8 +25,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
 }) => {
   const drawerContent = (
     <CustomBox sx={{ display: 'flex', flexDirection: 'column', height: '100%', border: 'none' }}>
-      <CustomBox sx={{ py: 3, flexGrow: 1, overflowY: 'auto' }}>
-        <H6 style={{ fontWeight: 'bold', margin: 0 }}>ÍNDICE</H6>
+      <CustomBox sx={{ py: 3, flexGrow: 1, overflowY: 'auto', width: '100%' }}>
+        <H6 style={{ fontWeight: 'bold', margin: 0, fontSize: '1rem' }}>ÍNDICE</H6>
         <Divider sx={{ borderBottomWidth: 1, mx: 'auto', mt: 1 }} />
 
         <List disablePadding>
@@ -55,7 +55,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     fontSize: '0.9rem',
                     padding: 0,
                     margin: 0,
-                    fontWeight: 600,
                   },
                 }}
               />
@@ -71,12 +70,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <Drawer
       variant="permanent"
       sx={{
-        width: DRAWER_WIDTH,
+        width: isMobile ? '100%' : DRAWER_WIDTH,
         flexShrink: 0,
         border: 'none',
         zIndex: 1,
         '& .MuiDrawer-paper': {
-          width: DRAWER_WIDTH,
+          width: isMobile ? '100%' : DRAWER_WIDTH,
           boxSizing: 'border-box',
           position: 'relative',
           border: 'none',
