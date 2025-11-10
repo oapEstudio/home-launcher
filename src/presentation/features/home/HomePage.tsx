@@ -9,14 +9,22 @@ import { colors } from '../../common/colors';
 import { toQuickLink } from './mappers/highlightMapper';
 import { useHomePage } from './hooks/useHomePage';
 import {  useMemo } from 'react';
-
+import imgCarouselDefault from './../../../../public/assets/img/home.png';
 import Skeleton from '@mui/material/Skeleton';
 import { CustomStack } from '../../components/ui/stack/Stack';
 
 import { toSlide } from './mappers/notificationCarouselMapper';
 import { useNavigate } from 'react-router-dom';
+import type { ISlide } from '../../../domain/entities/ISlide';
 
-
+const slideDefault: ISlide = {
+  id: '1',
+  imageUrl: imgCarouselDefault,
+  isActive: true,
+  order: 1,
+  title: 'Bienvenido!!',
+  subtitle: ''
+}
 export const HomePage = () => {
 
   const navigate = useNavigate();
@@ -33,6 +41,8 @@ export const HomePage = () => {
                 [resultCarousel?.data]
               )
 
+  
+    
 
   return (
     <>
@@ -40,7 +50,7 @@ export const HomePage = () => {
         <Container description={'HOME'} title='HOME'>
            <CustomBox sx={{paddingLeft: '1rem', paddingRight: '2rem'}}>
               {!loadingCarousel? 
-                    <Carousel slides={slides} height={490}/> : 
+                    <Carousel slides={slides.length >0 ? slides : [slideDefault] } height={490} /> : 
                     <CustomStack sx={{padding: '1%'}} direction='row' spacing={1}>
                       <Skeleton variant="rectangular" height={450} sx={{width: {xs: '100%',md: '50%'}}}  />
                       <Skeleton variant="rectangular" width='50%' height={450} sx={{display: {xs: 'none',md: 'block'}}}/>
