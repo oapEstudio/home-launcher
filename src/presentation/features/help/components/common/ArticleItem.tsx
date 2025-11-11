@@ -4,7 +4,6 @@ import type { IHelp } from "../../../../../domain/entities/IHelp";
 import { DocumentItem } from "./DocumentItem";
 import { CustomAccordion } from "../../../../components/ui/accordion/Accordion";
 import Divider from "../../../../components/ui/divider";
-import { colors } from "../../../../common/colors";
 
 interface ArticleItemProps {
   item: IHelp;
@@ -15,7 +14,6 @@ export const ArticleItem: React.FC<ArticleItemProps> = ({
   item, 
   showAccordion = false 
 }) => {
-  // Contenido común
   const content = (
     <CustomBox>
       {item.description && (
@@ -41,7 +39,6 @@ export const ArticleItem: React.FC<ArticleItemProps> = ({
         </CustomBox>
       )}
 
-      {/* Documentos hijos */}
       {item.children && item.children.length > 0 && (
         <CustomBox sx={{ mt: 2 }}>
           {item.children.map((document, index) => (
