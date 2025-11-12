@@ -1,9 +1,7 @@
 import YPFLogo from './logo-ypf.svg';
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 import { CustomStack } from '../../stack/Stack';
-import { colors } from '../../../../common/colors';
 import './ypf-logo.css';
 import Typography from '@mui/material/Typography';
 
@@ -19,10 +17,8 @@ const Container = styled('div')({
   gap: 0, 
 });
 
-const LogoImage = styled('img')({
-  //width: '5.5625rem',     
-  height: '2rem',
-           
+const LogoImage = styled('img')({   
+  height: '2rem',           
   objectFit: 'contain',    
 });
 
@@ -30,7 +26,7 @@ const Divider = styled('span')({
   display: 'inline-block',
   width: 0,                 
   height: '2.25rem',       
-  borderLeft: `1px solid ${colors.palette.primary.main}`,
+  borderLeft: `1px solid #AAAAAA`,
   margin: '0 .375rem',     
   opacity: 1,
 });

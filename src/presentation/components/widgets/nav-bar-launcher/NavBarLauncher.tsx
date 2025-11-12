@@ -42,103 +42,123 @@ export const NavBarLauncher: React.FC<INavBarLauncherProps> = ({ userName, menue
                 );
  
 
-  return (
-    <CustomBox
-        component="header"
-        sx={{
-          px: { xs: '4%', md: '8.5%' },
-          bgcolor: 'background.paper',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 1px 0 rgba(0,0,0,0.06)',
-          position: 'relative',
-          zIndex: 10,
-          overflow: 'visible',
-        }}
-      >
-  
-        <CustomStack
-          direction="row"
-          sx={{
-            width: '100%',
-            alignItems: 'stretch',         
-            justifyContent: 'space-between',
-            gap: { xs: 1, md: 2 },
-            overflow: 'visible',
-          }}
-        >
-         
-          <CustomStack
-            direction="row"
-            sx={{ alignItems: 'center', gap: 1.5, overflow: 'visible' }}
-          >
-            <DividerCell>
-              <LauncherHamburgerButton
-                sync={syncMenu}
-                ref={btnRef}
-                pressed={open}
-                onToggle={() => setOpen(v => !v)}
-              />
-              <LauncherMenu
-                data={menues}
-                open={open}
-                onClose={() => setOpen(false)}
-                anchorEl={btnRef.current}
-                className="launcherMenuDropdown"    
-              />
-            </DividerCell>
+  return <CustomBox >
+              <CustomBox
+                    component="header"
+                    sx={{
+                      px: { xs: '4%', md: '8.5%' },
+                      bgcolor: 'background.paper',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 1px 0 rgba(0,0,0,0.06)',
+                      position: 'relative',
+                      zIndex: 10,
+                      overflow: 'visible',
+                    }}
+                  >
+              
+                    <CustomStack
+                      direction="row"
+                      sx={{
+                        width: '100%',
+                        alignItems: 'stretch',         
+                        justifyContent: 'space-between',
+                        gap: { xs: 1, md: 2 },
+                        overflow: 'visible',
+                      }}
+                    >
+                    
+                      <CustomStack
+                        direction="row"
+                        sx={{ alignItems: 'center', gap: 1.5, overflow: 'visible' }}
+                      >
+                        <DividerCell>
+                          <LauncherHamburgerButton
+                            sync={syncMenu}
+                            ref={btnRef}
+                            pressed={open}
+                            onToggle={() => setOpen(v => !v)}
+                          />
+                          <LauncherMenu
+                            data={menues}
+                            open={open}
+                            onClose={() => setOpen(false)}
+                            anchorEl={btnRef.current}
+                            className="launcherMenuDropdown"    
+                          />
+                        </DividerCell>
 
-            <CustomBox sx={{ mt: { xs: 0.5, md: 0.5 } }}>
-              <LogoYPF link="/" />
-            </CustomBox>
-          </CustomStack>
+                        <CustomBox sx={{ mt: { xs: 0.5, md: 0.5 } }}>
+                          <LogoYPF link="/" />
+                        </CustomBox>
+                      </CustomStack>
 
-         
-          <CustomStack
-            direction="row"
-            sx={{ alignItems: 'center', gap: { xs: 0.7, md: 2 }, overflow: 'visible' }}
-          >
-            <CustomStack
-              sx={{
-                alignItems: { xs: 'flex-end', md: 'flex-end' },
-                lineHeight: 1,
-                display: { xs: 'none', sm: 'flex' },    
-                pt: '0.75rem',
-              }}
-            >
-              <Typography variant="body1" sx={{ color: 'primary.main' }}>
-                                Hola, <span style={{ textTransform: 'uppercase' }}>{userName || 'Usuario'}</span>
-              </Typography>
-              <div className="containerCloseSesion">
-                                <Button variant="secondary" title="Cerrar sesión" onClick={logout} />
-              </div>
-            </CustomStack>
+                    
+                      <CustomStack
+                        direction="row"
+                        sx={{ alignItems: 'center', gap: { xs: 0.7, md: 2 }, overflow: 'visible' }}
+                      >
+                        <CustomStack
+                          sx={{
+                            alignItems: { xs: 'flex-end', md: 'flex-end' },
+                            lineHeight: 1,
+                            display: { xs: 'none', sm: 'flex' },    
+                            pt: '0.75rem',
+                          }}
+                        >
+                          <Typography variant="body1" sx={{ color: 'primary.main' }}>
+                                            Hola, <span style={{ textTransform: 'uppercase' }}>{userName || 'Usuario'}</span>
+                          </Typography>
+                          <div className="containerCloseSesion">
+                                            <Button variant="secondary" title="Cerrar sesión" onClick={logout} />
+                          </div>
+                        </CustomStack>
 
-            <DividerCell>
-              <NotificationBell 
-                    loading={loadingNotifications} 
-                    groups={notifications as NotificationGroups} 
-                    iconResolver={(typeId) => {                  
-                      return selectedIconsNotificationCommon(typeId.toString());
-                    }} 
-                />
-            </DividerCell>
+                        <DividerCell>
+                          <NotificationBell 
+                                loading={loadingNotifications} 
+                                groups={notifications as NotificationGroups} 
+                                iconResolver={(typeId) => {                  
+                                  return selectedIconsNotificationCommon(typeId.toString());
+                                }} 
+                            />
+                        </DividerCell>
 
-            <div className='buttonHelp'>
-               <Button             
-                  variant="secondaryTwo"
-                  title="Ayuda"
-                  onClick={() => navigate('/help')}
-                  style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
-                  icon={<HelpIcon />}
-                />
-            </div>
-             <ButtonGroup variant="contained" className='buttonCloseResponsive' onClick={logout}>
-                <IconButton color='error'>
-                  <ExitIcon />
-                </IconButton>
-             </ButtonGroup>
+                        <div className='buttonHelp'>
+                          <Button             
+                              variant="secondaryTwo"
+                              title="Ayuda"
+                              onClick={() => navigate('/help')}
+                              style={{ backgroundColor: '#FAFAFA', borderRadius: 0 }}
+                              icon={<HelpIcon />}
+                            />
+                        </div>
+                        <ButtonGroup variant="contained" className='buttonCloseResponsive' onClick={logout}>
+                            <IconButton color='error'>
+                              <ExitIcon />
+                            </IconButton>
+                        </ButtonGroup>
 
-          </CustomStack>
-        </CustomStack>
-      </CustomBox>
-  );
+                      </CustomStack>
+                    </CustomStack>
+              </CustomBox>
+              <CustomBox sx={{
+                      bgcolor: '#fafafa',
+                      position: 'relative',
+                      zIndex: 1,
+                      alignContent: 'center',
+                      display: { xs: 'block', sm: 'none' },
+                      overflow: 'visible',
+                      marginTop: '0.5rem',
+                      height: '2rem'}}>
+                <Typography 
+                      textAlign={'center'} 
+                      variant="body1" 
+                      sx={{ 
+                        px: '2rem',
+                        color: 'primary.main', 
+                        overflowWrap: 'break-word'
+                        }}>
+                      Hola, <span style={{ textTransform: 'uppercase' }}>{userName || 'Usuario'}</span>
+                </Typography>
+              </CustomBox>                
+        </CustomBox>;
 };

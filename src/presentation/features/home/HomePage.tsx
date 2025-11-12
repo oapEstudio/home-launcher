@@ -21,10 +21,13 @@ const slideDefault: ISlide = {
   id: '1',
   imageUrl: imgCarouselDefault,
   isActive: true,
-  order: 1,
+  order: 1,  
   title: 'Bienvenido!!',
   subtitle: ''
 }
+
+
+
 export const HomePage = () => {
 
   const navigate = useNavigate();
@@ -67,8 +70,8 @@ export const HomePage = () => {
               } 
              
 
-              <CustomBox sx={{ borderTop:  `1px solid ${colors.palette.primary.main}`,
-                borderBottom: `1px solid ${colors.palette.primary.main}`,alignContent: 'center', justifyItems: 'center', marginTop: '5rem', marginBottom: '3rem', height: '4rem', backgroundColor: '#FAFAFA', width: '104%', left: 0, position: 'relative', marginLeft: '-2%', marginRight: '0px'}}>
+              <CustomBox sx={{ borderTop:  `1px solid #AAAAAA`,
+                borderBottom: `1px solid #AAAAAA`,alignContent: 'center', justifyItems: 'center', marginTop: '5rem', marginBottom: '3rem', height: '4rem', backgroundColor: '#FAFAFA', width: '104%', left: 0, position: 'relative', marginLeft: '-2%', marginRight: '0px'}}>
                  <Button             
                   variant="secondaryTwo"
                   title="Ayuda"
