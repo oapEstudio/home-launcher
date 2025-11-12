@@ -10,11 +10,22 @@ interface DocumentActionProps {
 
 export const DocumentAction: React.FC<DocumentActionProps> = ({ help }) => {
 
-  const onAction = () => {
+  const onOpenLink = () => {
     const win = window.open(help.link, '_blank', 'noopener,noreferrer');
     if (win) win.focus();
   };
 
+  const onOpenPdf = () => {
+    console.log('Open PDF:', help);
+    const win = window.open(help.link, '_blank', 'noopener,noreferrer');
+    if (win) win.focus();
+  };
+
+  const onAction = () => {
+    console.log('Archivo:', help);
+    const win = window.open(help.link, '_blank', 'noopener,noreferrer');
+    if (win) win.focus();
+  };
 
   const renderAction = (): JSX.Element | null => {
     switch (help.helpDocumentTypeId) {
@@ -58,7 +69,7 @@ export const DocumentAction: React.FC<DocumentActionProps> = ({ help }) => {
                 color: 'primary.main',
                 '&:hover': { textDecoration: 'underline' }
               }}
-              onClick={onAction}
+              onClick={onOpenLink}
             >
               Explorar
             </Typography>
