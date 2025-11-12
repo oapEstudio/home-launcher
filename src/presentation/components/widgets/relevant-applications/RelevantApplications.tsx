@@ -1,6 +1,5 @@
 import { CustomBox } from "../../ui/box/CustomBox";
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
@@ -11,7 +10,7 @@ import destacadoDos from './../../../../../public/assets/img/destacadoDos.png';
 import destacadoTres from './../../../../../public/assets/img/destacadoTres.png';
 import destacadoCuatro from './../../../../../public/assets/img/destacadoCuatro.png';
 import { CardsGrid } from "./components/CardsGrid";
-
+import "./relevant-applications.css";
 
 export type QuickLink = {
   id: string; label: string; href: string;
@@ -25,8 +24,26 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
   const list = (items ?? []).slice(0, 4);
 
   return (
-    <CustomBox sx={{ py: 4, position: 'relative', marginTop: '-5%', zIndex: '1000' }}>
-      <Container style={{ maxWidth: '100%' }}>       
+    <CustomBox sx={{ py: 4, position: 'relative', marginTop: '-5%', zIndex: '1000', 
+                    '&:hover .title': {        
+                      display: 'block'
+                    } }}>
+      <Container style={{ maxWidth: '100%' }}>    
+        <>
+          {
+            items && items.length > 0 && 
+             <CustomBox className="title" sx={{
+                    display: 'none', 
+                    mb: 2
+                }}>
+                    <Typography color="#AAAAAA" sx={{ fontWeight: 700, position: "relative" }}>
+                      Accesos rápidos
+                    </Typography>
+                    <CustomDivider style={{ marginTop: '1px !important' }} />
+            </CustomBox>    
+          }
+        
+        </>
         <CardsGrid>
           {list.map((q, index) => {
             const hoverBg = imgArrayhoverRelevant[index];
@@ -38,7 +55,7 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
                   sx={{
                     position: 'relative',
                     borderRadius: 1,
-                    backgroundColor: '#FAFAFA',
+                    backgroundColor: '#0052cc17',
                     border: "1px solid",
                     borderColor: "#CFCFCF",
                     height: { xs: 250, md: 250 },

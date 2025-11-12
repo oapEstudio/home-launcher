@@ -27,7 +27,10 @@ export const ContainerSlideTitle: React.FC<IContainerSlideTitleProps> = ({height
           justifyContent: 'center',
           bgcolor: 'background.paper',
           borderRadius: 0,
-         
+          backgroundColor: {
+            xs: 'transparent',
+            sm: 'background.paper'
+          },
           backdropFilter: { xs: 'blur(2px)', md: 'none' },        
           paddingBottom: {xs: '10%'},
           paddingLeft: { xs: '20%', md: 15},
@@ -37,7 +40,32 @@ export const ContainerSlideTitle: React.FC<IContainerSlideTitleProps> = ({height
         }}
         elevation={0}
       >
-        <CustomStack spacing={2} sx={{ maxWidth: 640, width: '100%' }}>
+        <CustomStack spacing={2} sx={{
+                                   maxWidth: 640, 
+                                   width: {
+                                    xs: '66%',
+                                    sm: '100%'
+                                   }, 
+                                   padding: {
+                                    xs: '1rem',
+                                    sm: 0
+                                   },
+                                   borderRadius: {
+                                    xs: '5%',
+                                    sm: 0
+                                   },
+                                   backgroundColor: {
+                                    xs: '#FAFAFA',
+                                    sm: 'background.paper'
+                                   },
+                                   position: {
+                                    xs: 'absolute',
+                                    sm: 'relative'
+                                   },
+                                   left: {
+                                    xs: 0
+                                   }
+                                   }}>
           <Typography variant="h1" sx={{ overflow: 'hidden',
               textOverflow: 'ellipsis',
               display: '-webkit-box',
@@ -46,7 +74,7 @@ export const ContainerSlideTitle: React.FC<IContainerSlideTitleProps> = ({height
               wordBreak: 'break-word',
               overflowWrap: 'anywhere',
               whiteSpace: 'normal', fontSize: {xs: '1.5rem', md: '2rem', lg: '2rem'}}}>{title}</Typography>
-          <Divider style={{width: '20%', background: colors.palette.primary.main}}/>
+          <Divider style={{width: '20%', background: '#AAAAAA'}}/>
           <>
           {!!subtitle && (
             <Typography sx={{ overflow: 'hidden',

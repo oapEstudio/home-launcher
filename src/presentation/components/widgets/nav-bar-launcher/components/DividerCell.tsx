@@ -11,8 +11,8 @@ export const DividerCell = styled('div')(({ theme }) => ({
   minWidth: 64,
 
   backgroundColor: '#FAFAFA',
-  borderLeft:  `1px solid ${colors.palette.primary.main}`,
-  borderRight: `1px solid ${colors.palette.primary.main}`,
+  borderLeft:  `1px solid #AAAAAA`,
+  borderRight: `1px solid #AAAAAA`,
 
   position: 'relative',          
 }));
