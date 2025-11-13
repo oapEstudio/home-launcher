@@ -16,6 +16,7 @@ export interface IHelp {
   document: IDocument[];
   profile: IProfile[]; 
   dateUpdated: string;
+  documentLink: string;
   children: IHelp[];
 }
 
