@@ -1,0 +1,51 @@
+import type { ISlide } from "../../../../domain/entities/ISlide";
+
+export const mockSlides: ISlide[] = [
+  {
+    id: "slide-1",
+    title: "Explorá las nuevas funcionalidades",
+    subtitle: "Descubrí cómo mejorar tu productividad con las últimas herramientas",
+    imageUrl: "https://picsum.photos/id/1015/1280/720",
+    cta: { label: "Ver más", href: "/features", target: "_self" },
+    order: 1,
+    isActive: true,
+    activeFrom: "2025-11-01",
+    activeTo: "2025-12-01",
+  },
+  {
+    id: "slide-2",
+    title: "Actualización de la plataforma",
+    subtitle: "Nueva interfaz más ágil, rápida y adaptable",
+    imageUrl: "https://picsum.photos/id/1025/1280/720",
+    cta: { label: "Leer más", href: "/updates", target: "_self" },
+    order: 2,
+    isActive: true,
+    activeFrom: "2025-11-10",
+  },
+  {
+    id: "slide-3",
+    title: "Conectá con tu equipo",
+    subtitle: "Colaboración en tiempo real desde cualquier lugar",
+    imageUrl: "https://picsum.photos/id/1035/1280/720",
+    cta: { label: "Probar ahora", href: "/collaboration", target: "_blank" },
+    order: 3,
+    isActive: true,
+  },
+  {
+    id: "slide-4",
+    title: "Mantené tus datos seguros",
+    subtitle: "Protección avanzada con cifrado de extremo a extremo",
+    imageUrl: "https://picsum.photos/id/1045/1280/720",
+    order: 4,
+    isActive: false,
+  },
+  {
+    id: "slide-5",
+    title: "Soporte 24/7",
+    subtitle: "Estamos para ayudarte en todo momento",
+    imageUrl: "https://picsum.photos/id/1055/1280/720",
+    cta: { label: "Contactar", href: "/support", target: "_self" },
+    order: 5,
+    isActive: true,
+  },
+];

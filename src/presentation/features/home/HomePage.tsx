@@ -16,6 +16,7 @@ import { CustomStack } from '../../components/ui/stack/Stack';
 import { toSlide } from './mappers/notificationCarouselMapper';
 import { useNavigate } from 'react-router-dom';
 import type { ISlide } from '../../../domain/entities/ISlide';
+import { mockSlides } from './mock/mock-carousel';
 
 const slideDefault: ISlide = {
   id: '1',
@@ -53,7 +54,7 @@ export const HomePage = () => {
         <Container description={'HOME'} title='HOME'>
            <CustomBox sx={{paddingLeft: '1rem', paddingRight: '2rem'}}>
               {!loadingCarousel? 
-                    <Carousel slides={slides.length >0 ? slides : [slideDefault] } height={490} /> : 
+                    <Carousel slides={mockSlides/*slides.length >0 ? slides : [slideDefault] */} height={490} /> : 
                     <CustomStack sx={{padding: '1%'}} direction='row' spacing={1}>
                       <Skeleton variant="rectangular" height={450} sx={{width: {xs: '100%',md: '50%'}}}  />
                       <Skeleton variant="rectangular" width='50%' height={450} sx={{display: {xs: 'none',md: 'block'}}}/>

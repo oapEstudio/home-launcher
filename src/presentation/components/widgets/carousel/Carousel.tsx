@@ -77,9 +77,14 @@ export const Carousel: React.FC<ICarouselProps> = ({
         borderBottomLeftRadius: '5%',
       },
       '@media (max-width: 600px)': {
-        '&:hover .carousel-arrow': { 
-           backgroundColor: 'transparent',
-            boxShadow: 'none'
+        '& .carousel-arrow': { 
+           backgroundColor: 'rgba(255,255,255,0.8)',
+           borderRadius: '10%',
+           boxShadow: 'none'
+        },
+        '&:hover .carousel-arrow': {          
+          backgroundColor: 'rgba(255,255,255,0.8)',
+          borderRadius: '10%',
         },
       }
     }}

@@ -19,7 +19,7 @@ export const ArrowsSlide: React.FC<IArrowsSlideProps> = ({goPrev,goNext,arrowsAt
                 sx={{
                   position: { xs: 'absolute', md: arrowsAtEdges ? 'absolute' : 'absolute' },
                   left: { xs: 12, md: 0 },
-                  top: '50%',
+                  top: { xs: '30rem', sm: '50%'},
                   fontSize: '2.5rem',
                   transform: 'translateY(-50%)',
                   color: 'primary.main',
@@ -36,7 +36,7 @@ export const ArrowsSlide: React.FC<IArrowsSlideProps> = ({goPrev,goNext,arrowsAt
                 sx={{
                   position: { xs: 'absolute', md: arrowsAtEdges ? 'absolute' : 'absolute' },
                   right: { xs: 12, md: 0 },
-                  top: '50%',
+                  top: { xs: '30rem', sm: '50%'},
                   fontSize: '2.5rem',
                   transform: 'translateY(-50%)',
                   color: 'primary.main',
