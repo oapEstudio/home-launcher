@@ -1,8 +1,7 @@
-import { Paper, Typography, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 import type { IHelp } from "../../../../../domain/entities/IHelp";
 import { CustomBox } from "../../../../components/ui/box/CustomBox";
 import { DocumentAction } from "./DocumentAction";
-import { HELP_DOCUMENT_DOWNLOAD, HELP_DOCUMENT_LINK, HELP_DOCUMENT_PDF } from "../../contants/helps";
 import { colors } from "../../../../common/colors";
 
 
