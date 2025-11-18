@@ -4,7 +4,6 @@ import React from 'react';
 import { Sidebar } from '../../../../../src/presentation/features/help/components/layout/Sidebar';
 import { IHelp } from '../../../../../src/domain/entities/IHelp';
 
-// Helper para crear secciones falsas
 const crearSeccion = (id: string, title: string): IHelp => ({
   id,
   title,

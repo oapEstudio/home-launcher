@@ -13,7 +13,6 @@ vi.mock('../../../../../src/presentation/features/help/components/common/Documen
   DocumentItem: ({ item }: any) => <div>Document: {item.title}</div>
 }));
 
-// Helper para crear mock de IHelp
 const createMockHelp = (id: string, title: string, helpTypeId: number): IHelp => ({
   id,
   helpTypeId,
