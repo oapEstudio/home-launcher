@@ -3,6 +3,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { styled } from '@mui/material/styles'
 import { WhatsAppIcon } from '../icons'
+import { Tooltip } from '@mui/material'
 
 const BlackText = styled('span')({
   fontWeight: 'bold',
@@ -20,7 +21,7 @@ export const Footer: React.FC = () => (
       width: '100%',
       bgcolor: 'background.paper',
       //borderTop: '1px solid rgba(0, 0, 0, 0.12)',
-       borderTop: 'none',
+      borderTop: 'none',
       p: 2,
       zIndex: (theme) => theme.zIndex.appBar,
       '&::before': {
@@ -50,7 +51,25 @@ export const Footer: React.FC = () => (
       <span>|</span>
       <Box component="span">Términos y condiciones</Box>
       <span>|</span>
-      <WhatsAppIcon />
+      <Tooltip title="Escribinos por WhatsApp" placement="top" arrow>
+        <Typography
+          component="a"
+          href="https://wa.me/5491128076735"
+          target="_blank"
+          rel="noopener noreferrer"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            color: 'inherit',
+            textDecoration: 'none',
+            '&:hover': {
+              opacity: 0.7,
+            },
+          }}
+        >
+          <WhatsAppIcon />
+        </Typography>
+      </Tooltip>
     </Typography>
   </Box>
 )
