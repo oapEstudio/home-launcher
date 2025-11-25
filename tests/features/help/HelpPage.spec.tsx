@@ -86,7 +86,7 @@ describe('HelpPage', () => {
     renderWithRouter(<HelpPage />);
 
     expect(screen.getByText('Mesa de ayuda')).toBeTruthy();
-    expect(screen.getByText('Encuentra documentación y recursos de ayuda')).toBeTruthy();
+    expect(screen.getByText('Encontrá acá todos los recursos de ayuda disponibles')).toBeTruthy();
   });
 
   it('debe mostrar skeleton mientras está cargando', () => {

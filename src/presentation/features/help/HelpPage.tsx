@@ -66,7 +66,7 @@ export const HelpPage = () => {
             Mesa de ayuda
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            Encuentra documentación y recursos de ayuda
+            Encontrá acá todos los recursos de ayuda disponibles
           </Typography>
         </CustomBox>
 
