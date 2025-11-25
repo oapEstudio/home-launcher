@@ -29,15 +29,11 @@ export const HomeLauncherApp = () => {
       return (
           <>
               <AuthProvider repo={repo} mode={env.authMode}>
-                  <AuthGate>
-                      <DependencyContext.Provider value={defaultDependencies}>
-                          <BrowserRouter>
+                      <DependencyContext.Provider value={defaultDependencies}>                         
                               <ThemeWrapper>
                                   <Application />
-                              </ThemeWrapper>
-                          </BrowserRouter>
+                              </ThemeWrapper>                          
                       </DependencyContext.Provider>
-                  </AuthGate>
               </AuthProvider>
   
           </>
