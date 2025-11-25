@@ -1,43 +1,40 @@
 import React from "react";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { MainHomeLauncher } from "../layout/home_launcher/MainHomeLauncher";
-import { NavBarLauncher } from "../components/widgets/nav-bar-launcher/NavBarLauncher";
-import { useGetMenuesHome } from "../features/home/hooks/useGetMenuesHome";
-import type { NavItem } from "../components/widgets/menu-home/types";
-import { mapMenuToNavItems } from "../features/home/mappers/menuHomeToNavItems";
-import Footer from "../components/ui/footer/Footer";
-import { RedStripe } from "../components/widgets/nav-bar-launcher/components/RedStripe";
-import { useGetNotificationAlert } from "../features/home/hooks/useGetNotificationAlert";
-import { useAuth } from "../contexts/AuthContext";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { HELP, HOME } from "./routes";
+import { HomePage } from "../features/home/HomePage";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { HelpPage } from "../features/help/HelpPage";
+import { Page404Launcher } from "../layout/home_launcher/Page404Launcher";
+import { PageError } from "../components/widgets/page-error/PageError";
 
-const Root: React.FC = () => {
-    
-    const { getUserName, logout } = useAuth();
-    const {result, loading} = useGetMenuesHome({
-        page: 1,
-        pageSize: 1000,
-        sortBy: '',
-        sortDescending: false
-    });
+const loginUrl = new URL('/.auth/login', window.location.origin);
 
-    const {result: resultAlert} = useGetNotificationAlert({
-        page: 1,
-        pageSize: 1,
-        sortBy: '',
-        sortDescending: false
-    })
-     const alert: boolean = false;
- 
-    const mapResult: NavItem[] = mapMenuToNavItems(result?.data??[]);
-    const userName = (getUserName() ?? '').trim();
-    return (
-        <MainHomeLauncher>
-            { resultAlert &&  resultAlert.data.length > 0 && <RedStripe  message={resultAlert?.data[0].title} /> }
-            <NavBarLauncher syncMenu={loading} userName={userName} menues={mapResult} logout={logout} />
-            <ProtectedRoute />
-            <Footer />
-        </MainHomeLauncher>
-    );
+const router = createBrowserRouter([
+  {
+    element: <ProtectedRoute />,          
+    children: [
+      {
+        element: <MainHomeLauncher />,     
+        children: [
+          { path: HOME.name, element: <HomePage />},
+          { path: HELP.name, element: <HelpPage />},
+          {path: '*',  element: <Page404Launcher /> }                        
+        ]
+     }]
+ },
+ { path: '*', element: <PageError 
+                                cod='401' 
+                                error='Acceso denegado' 
+                                details='La solicitud requiere autenticación válida para continuar.' 
+                                redirectPath={loginUrl.toString()} /> }
+])
+
+
+export default function AppRouter() {
+  return <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <RouterProvider router={router} />
+        </LocalizationProvider>
 }
-
-export default Root;

@@ -1,31 +1,33 @@
-import { Routes, Route } from 'react-router-dom';
+import { Outlet, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useEffect } from "react";
+import { CustomBox } from "../components/ui/box/CustomBox";
+import Loading from "../components/ui/loading";
+import Typography from "@mui/material/Typography";
 
-import { HELP, HOME } from './routes';
-import { HomePage } from '../features/home/HomePage';
-import { HelpPage } from '../features/help/HelpPage';
-import { Page404Launcher } from '../layout/home_launcher/Page404Launcher';
 
-export const ProtectedRoute = () => (
-  <Routes>   
-    <Route
-      path={HOME.name}
-      element={        
-          <HomePage />       
-      }
-    />
+export const ProtectedRoute: React.FC = () => {
+  const { mode, loading, isAuthenticated, ensureAuthenticated } = useAuth();
+  const location = useLocation();
 
-    <Route
-      path={HELP.name}
-      element={        
-          <HelpPage />       
-      }
-    />
-    
-    <Route
-      path='*'
-      element={        
-          <Page404Launcher />       
-      }
-    />
-  </Routes>
-);
+  if (mode !== 'enabled') {
+    return <Outlet />;
+  }
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      void ensureAuthenticated({ landingPage: `${location.pathname}${location.search}` });
+    }
+  }, [loading, isAuthenticated, ensureAuthenticated, location]);
+
+  if (loading || !isAuthenticated) {
+    return (
+      <CustomBox sx={{ display: 'grid', placeItems: 'center', height: '100dvh' }}>
+        <Loading />
+        <Typography>Cargando…</Typography>
+      </CustomBox>
+    );
+  }
+
+  return <Outlet />;
+};
