@@ -46,10 +46,13 @@ import LinkIcon from '@mui/icons-material/Link';
 import SvgIcon from '@mui/material/SvgIcon';
 import type { ElementType } from "react";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+import FormatColorTextIcon from '@mui/icons-material/FormatColorText';
 
 export interface IIconAction{
-  handleClick?: any,
-  parameterHandleClick?: any
+  handleClick?: any;
+  parameterHandleClick?: any;
+  style?: React.CSSProperties;
 }
 export const PendingIcon = ({ color }: any) => {
   return <PendingTwoToneIcon sx={{ color: color, fontSize: 40 }} />;
@@ -238,17 +241,32 @@ export const LinksIcon = ()=>{
 
 
 type SVGIconProps = {
-  icon: ElementType;           // componente React (no URL)
+  icon: ElementType;           
   color?: string;
   fontSize?: 'inherit'|'small'|'medium'|'large';
+  style?: React.CSSProperties
 };
 
 
-export const SVGIcon = ({ icon, color = colors.palette.primary.main, fontSize = 'medium' }: SVGIconProps) => (
+export const SVGIcon = ({ icon, color = colors.palette.primary.main, fontSize = 'medium',style }: SVGIconProps) => (
   <SvgIcon
+    style={style}    
     component={icon}
     inheritViewBox
     fontSize={fontSize}
     sx={color ? { color } : undefined}
   />
 );
+
+
+export const ColorFillIcon:React.FC<IIconAction> = ({handleClick, parameterHandleClick}) => {
+  //return <EditIcon sx={{ color: baselightTheme.palette.info.dark }} />;
+  return <FormatColorFillIcon onClick={()=>{
+      if(handleClick) parameterHandleClick? handleClick(parameterHandleClick) : handleClick();
+  }} />
+};
+
+
+export const ColorTextIcon: React.FC<IIconAction> = ({style}) => {
+  return <FormatColorTextIcon style={style} />
+}

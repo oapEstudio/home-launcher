@@ -9,6 +9,14 @@ export const env = {
          version: 'v1'
         }
     },
+    dynamic_pages: {
+      getByTitle: {
+        page: {
+          endpoint: 'pages/{title}',   
+          version: 'v1'
+        },
+      }
+    },
     menuHome: {
       getAll: {
          endpoint: 'menu',   
