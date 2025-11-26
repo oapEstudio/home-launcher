@@ -14,6 +14,8 @@ import { NotificationCommonRepository } from '../../infrastructure/adapters/http
 import { UpdateNotificationCommonUseCase } from '../../application/usecases/UpdateNotificationCommonUseCase';
 import { GetHelpUseCase } from '../../application/usecases/GetHelpUseCase';
 import { HelpRepository } from '../../infrastructure/adapters/http/HelpRepository';
+import { GetDynamicPageByTextUseCase } from '../../application/usecases/GetDynamicPageByTitleUseCase';
+import { DynamicPageRepository } from '../../infrastructure/adapters/http/DynamicPageRepository';
 
 
 const menuHomeRepo = new MenuHomeRepository();
@@ -22,6 +24,7 @@ const notificationCarousel = new NotificationCarouselRepository();
 const notificationAlertRepo = new NotificationAlertRepository();
 const notificationCommonRepo = new NotificationCommonRepository();
 const helpRepo = new HelpRepository();
+const dynamicPageRepo = new DynamicPageRepository();
 
 
 //const filterRepo = new DatasetFilterRepository();
@@ -36,6 +39,7 @@ export interface IDependencies{
   getNotificationCommon: GetNotificationCommonUseCase;
   updateNotificationCommon: UpdateNotificationCommonUseCase;
   getHelp: GetHelpUseCase;
+  getDynamicPageByTitle: GetDynamicPageByTextUseCase
 }
 
 
@@ -48,6 +52,7 @@ export const defaultDependencies: IDependencies = {
   getNotificationCommon: new GetNotificationCommonUseCase(notificationCommonRepo),
   updateNotificationCommon: new UpdateNotificationCommonUseCase(notificationCommonRepo),
   getHelp: new GetHelpUseCase(helpRepo),
+  getDynamicPageByTitle: new GetDynamicPageByTextUseCase(dynamicPageRepo),
 };
 
 export const DependencyContext = React.createContext<IDependencies>(defaultDependencies);
