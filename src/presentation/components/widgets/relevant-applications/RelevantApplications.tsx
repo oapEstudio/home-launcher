@@ -24,7 +24,7 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
   const list = (items ?? []).slice(0, 4);
 
   return (
-    <CustomBox sx={{ py: 4, position: 'relative', marginTop: '-5%', zIndex: '1000', 
+    <CustomBox sx={{ py: 4, position: 'relative', marginTop: '-5%', zIndex: '1', 
                     '&:hover .title': {        
                       display: 'block'
                     } }}>
