@@ -15,7 +15,7 @@ export function useGetDynamicPageByTitle() {
       return n;
     } catch (e: any) {
       console.log("Error",e)
-      setError(e?.message ?? 'Error al obtener la pagina');
+      setError(e?.message ?? 'Error al obtener la página');
       throw e;
     } finally {
       setLoading(false);
