@@ -55,7 +55,7 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
                   sx={{
                     position: 'relative',
                     borderRadius: 1,
-                    backgroundColor: '#0052cc17',
+                    backgroundColor: '#e8effa',
                     border: "1px solid",
                     borderColor: "#CFCFCF",
                     height: { xs: 250, md: 250 },
