@@ -40,8 +40,8 @@ axios.interceptors.response.use(
 axios.defaults.headers.common["Authorization"] =
   `Basic ${btoa(`${user}:${pass}`)}`;
 
-
-axios.defaults.baseURL = env.baseURL;
+const cleanBaseURL = new URL(env.baseURL, window.location.origin).origin;
+axios.defaults.baseURL = `${cleanBaseURL}/api/`;
 
 const getConfig = (config: IHttpRequestConfig = {}) => {
   const { baseURL, queryParams, headers, ...rest } = config;

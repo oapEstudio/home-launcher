@@ -10,21 +10,13 @@ export class DynamicPageRepository extends RepositoryAbstract implements IDynami
   resource = env.resources.dynamic_pages;
 
   async getDynamicPageByTitle(title: string): Promise<IDynamicPage> {
-    const rawVersion = this.resource.getByTitle.page.version ?? 'v1';
-    const v = rawVersion.startsWith('v') ? rawVersion : `v${rawVersion}`;
+    const version = this.resource.getByTitle.version;
 
-    const endpointTpl = this.resource.getByTitle.page.endpoint; // "pages/{title}"
-    const endpoint = endpointTpl.replace('{title}', encodeURIComponent(title));
+    const url = this.resource.getByTitle.endpoint.replace('{title}', title);
 
-    let base = (env.baseURL ?? '').replace(/\/+$/, '');
+    const response = await apiHandler.get<IDynamicPage>(this.resolveURL(url, version));
 
-    const shouldAddApi = !/\/api$/.test(base);
-
-    const fullUrl = `${base}${shouldAddApi ? '/api' : ''}/${v}/${endpoint}`
-      .replace(/(?<!:)\/{2,}/g, '/'); 
-
-    const res = await apiHandler.get<IDynamicPage>(fullUrl);
-    return res.data;
+    return response.data;
   }
 
 }

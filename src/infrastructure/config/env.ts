@@ -11,10 +11,8 @@ export const env = {
     },
     dynamic_pages: {
       getByTitle: {
-        page: {
-          endpoint: 'pages/{title}',   
-          version: 'v1'
-        },
+        endpoint: 'pages/{title}',   
+        version: 'v1'
       }
     },
     menuHome: {
