@@ -31,7 +31,7 @@ axios.interceptors.response.use(
       msg = "No estás autorizado. Por favor, inicia sesión."
     } else if (status === 400) {
       msg = "Los datos enviados son inválidos."
-    }
+    } 
 
     return Promise.reject(new Error(msg))
   }
