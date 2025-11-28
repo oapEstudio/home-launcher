@@ -39,7 +39,7 @@ export default function RelevantApplications({ items }: { items: QuickLink[] }) 
                     <Typography color="#AAAAAA" sx={{ fontWeight: 700, position: "relative" }}>
                       Accesos rápidos
                     </Typography>
-                    <CustomDivider style={{ marginTop: '1px !important' }} />
+                    <CustomDivider style={{width: '45%', marginTop: '1px !important' }} />
             </CustomBox>    
           }
         
